@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+
+# OS junk
+.DS_Store
+
+# Large or derived data (adjust if needed)
+data/*.tmp
+data/*~ ø

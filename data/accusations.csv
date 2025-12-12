@@ -1,0 +1,949 @@
+Country,Source,source_type,count_nat,total_nat,percentage_nat,count_res,total_res,percentage_res
+--,Australia,Nationality,43.0,563.0,7.63765541740675,,,
+--,Australia,Residence,,,,26.0,563.0,4.618117229129663
+--,Austria,Nationality,19.0,563.0,3.374777975133215,,,
+--,Bosnia and Herzegovina,Nationality,11.0,563.0,1.9538188277087036,,,
+--,Bosnia and Herzegovina,Residence,,,,11.0,563.0,1.9538188277087036
+--,Brazil,Nationality,10.0,563.0,1.7761989342806392,,,
+--,Brazil,Residence,,,,10.0,563.0,1.7761989342806392
+--,Bulgaria,Nationality,11.0,563.0,1.9538188277087036,,,
+--,Bulgaria,Residence,,,,11.0,563.0,1.9538188277087036
+--,Canada,Nationality,18.0,563.0,3.197158081705151,,,
+--,Canada,Residence,,,,6.0,563.0,1.0657193605683837
+--,China,Residence,,,,7.0,563.0,1.2433392539964476
+--,Finland,Nationality,7.0,563.0,1.2433392539964476,,,
+--,Finland,Residence,,,,7.0,563.0,1.2433392539964476
+--,France,Residence,,,,19.0,563.0,3.374777975133215
+--,Germany,Nationality,30.0,563.0,5.328596802841918,,,
+--,Germany,Residence,,,,30.0,563.0,5.328596802841918
+--,Ghana,Residence,,,,4.0,563.0,0.7104795737122558
+--,Ireland,Nationality,9.0,563.0,1.5985790408525755,,,
+--,Ireland,Residence,,,,9.0,563.0,1.5985790408525755
+--,Israel,Nationality,18.0,563.0,3.197158081705151,,,
+--,Israel,Residence,,,,16.0,563.0,2.841918294849023
+--,Italy,Nationality,4.0,563.0,0.7104795737122558,,,
+--,Italy,Residence,,,,4.0,563.0,0.7104795737122558
+--,"Korea, South",Nationality,11.0,563.0,1.9538188277087036,,,
+--,"Korea, South",Residence,,,,11.0,563.0,1.9538188277087036
+--,Netherlands,Nationality,29.0,563.0,5.150976909413854,,,
+--,Netherlands,Residence,,,,13.0,563.0,2.3090586145648313
+--,Poland,Nationality,9.0,563.0,1.5985790408525755,,,
+--,Poland,Residence,,,,9.0,563.0,1.5985790408525755
+--,Prefer not to say,Nationality,27.0,563.0,4.7957371225577266,,,
+--,Prefer not to say,Residence,,,,37.0,563.0,6.571936056838366
+--,Romania,Nationality,20.0,563.0,3.5523978685612785,,,
+--,Romania,Residence,,,,19.0,563.0,3.374777975133215
+--,Russia,Residence,,,,16.0,563.0,2.841918294849023
+--,Spain,Residence,,,,16.0,563.0,2.841918294849023
+--,Swaziland,Nationality,4.0,563.0,0.7104795737122558,,,
+--,Sweden,Nationality,20.0,563.0,3.5523978685612785,,,
+--,Sweden,Residence,,,,20.0,563.0,3.5523978685612785
+--,Switzerland,Residence,,,,14.0,563.0,2.4866785079928952
+--,Thailand,Residence,,,,16.0,563.0,2.841918294849023
+--,Trinidad and Tobago,Nationality,15.0,563.0,2.664298401420959,,,
+--,Ukraine,Nationality,13.0,563.0,2.3090586145648313,,,
+--,Ukraine,Residence,,,,10.0,563.0,1.7761989342806392
+--,United Kingdom,Nationality,114.0,563.0,20.24866785079929,,,
+--,United Kingdom,Residence,,,,107.0,563.0,19.005328596802844
+--,United States,Nationality,121.0,563.0,21.49200710479574,,,
+--,United States,Residence,,,,115.0,563.0,20.426287744227352
+Afghanistan,Benin,Nationality,1.0,2.0,50.0,,,
+Afghanistan,Prefer not to say,Residence,,,,1.0,2.0,50.0
+Afghanistan,United Kingdom,Residence,,,,1.0,2.0,50.0
+Afghanistan,United States,Nationality,1.0,2.0,50.0,,,
+Algeria,Canada,Nationality,1.0,3.0,33.33333333333333,,,
+Algeria,Israel,Nationality,1.0,3.0,33.33333333333333,,,
+Algeria,Israel,Residence,,,,1.0,3.0,33.33333333333333
+Algeria,Switzerland,Residence,,,,1.0,3.0,33.33333333333333
+Algeria,United States,Nationality,1.0,3.0,33.33333333333333,,,
+Algeria,United States,Residence,,,,1.0,3.0,33.33333333333333
+Angola,Gambia,Nationality,1.0,2.0,50.0,,,
+Angola,Gambia,Residence,,,,1.0,2.0,50.0
+Angola,Ghana,Residence,,,,1.0,2.0,50.0
+Angola,Swaziland,Nationality,1.0,2.0,50.0,,,
+Argentina,United States,Nationality,1.0,1.0,100.0,,,
+Argentina,United States,Residence,,,,1.0,1.0,100.0
+Armenia,United States,Nationality,2.0,2.0,100.0,,,
+Armenia,United States,Residence,,,,2.0,2.0,100.0
+Australia,Australia,Nationality,4.0,8.0,50.0,,,
+Australia,Australia,Residence,,,,4.0,8.0,50.0
+Australia,Benin,Nationality,1.0,8.0,12.5,,,
+Australia,Prefer not to say,Residence,,,,1.0,8.0,12.5
+Australia,United Kingdom,Nationality,2.0,8.0,25.0,,,
+Australia,United Kingdom,Residence,,,,2.0,8.0,25.0
+Australia,United States,Nationality,1.0,8.0,12.5,,,
+Australia,United States,Residence,,,,1.0,8.0,12.5
+Azerbaijan,United States,Nationality,1.0,1.0,100.0,,,
+Azerbaijan,United States,Residence,,,,1.0,1.0,100.0
+Belarus,Australia,Residence,,,,1.0,25.0,4.0
+Belarus,Brazil,Nationality,1.0,25.0,4.0,,,
+Belarus,Brazil,Residence,,,,1.0,25.0,4.0
+Belarus,Bulgaria,Nationality,1.0,25.0,4.0,,,
+Belarus,Bulgaria,Residence,,,,1.0,25.0,4.0
+Belarus,Canada,Nationality,1.0,25.0,4.0,,,
+Belarus,Germany,Residence,,,,1.0,25.0,4.0
+Belarus,Israel,Nationality,1.0,25.0,4.0,,,
+Belarus,Israel,Residence,,,,1.0,25.0,4.0
+Belarus,Italy,Nationality,2.0,25.0,8.0,,,
+Belarus,Italy,Residence,,,,2.0,25.0,8.0
+Belarus,Nigeria,Nationality,5.0,25.0,20.0,,,
+Belarus,Nigeria,Residence,,,,5.0,25.0,20.0
+Belarus,Romania,Nationality,2.0,25.0,8.0,,,
+Belarus,Switzerland,Residence,,,,3.0,25.0,12.0
+Belarus,Thailand,Residence,,,,2.0,25.0,8.0
+Belarus,United Kingdom,Nationality,5.0,25.0,20.0,,,
+Belarus,United Kingdom,Residence,,,,3.0,25.0,12.0
+Belarus,United States,Nationality,7.0,25.0,28.000000000000004,,,
+Belarus,United States,Residence,,,,5.0,25.0,20.0
+Belgium,Benin,Nationality,1.0,1.0,100.0,,,
+Belgium,Prefer not to say,Residence,,,,1.0,1.0,100.0
+Belize,Australia,Nationality,1.0,3.0,33.33333333333333,,,
+Belize,Australia,Residence,,,,1.0,3.0,33.33333333333333
+Belize,Israel,Nationality,1.0,3.0,33.33333333333333,,,
+Belize,Netherlands,Nationality,1.0,3.0,33.33333333333333,,,
+Belize,Switzerland,Residence,,,,1.0,3.0,33.33333333333333
+Belize,Turkey,Residence,,,,1.0,3.0,33.33333333333333
+Benin,Ghana,Residence,,,,2.0,2.0,100.0
+Benin,Swaziland,Nationality,2.0,2.0,100.0,,,
+Bosnia and Herzegovina,United Kingdom,Nationality,1.0,1.0,100.0,,,
+Bosnia and Herzegovina,United States,Residence,,,,1.0,1.0,100.0
+Botswana,United States,Nationality,2.0,2.0,100.0,,,
+Botswana,United States,Residence,,,,2.0,2.0,100.0
+Brazil,Australia,Nationality,2.0,63.0,3.1746031746031744,,,
+Brazil,Benin,Nationality,1.0,63.0,1.5873015873015872,,,
+Brazil,Bosnia and Herzegovina,Nationality,1.0,63.0,1.5873015873015872,,,
+Brazil,Bosnia and Herzegovina,Residence,,,,1.0,63.0,1.5873015873015872
+Brazil,Brazil,Nationality,8.0,63.0,12.698412698412698,,,
+Brazil,Brazil,Residence,,,,8.0,63.0,12.698412698412698
+Brazil,Germany,Residence,,,,2.0,63.0,3.1746031746031744
+Brazil,Ireland,Nationality,2.0,63.0,3.1746031746031744,,,
+Brazil,Ireland,Residence,,,,2.0,63.0,3.1746031746031744
+Brazil,Israel,Nationality,6.0,63.0,9.523809523809524,,,
+Brazil,Israel,Residence,,,,3.0,63.0,4.761904761904762
+Brazil,Nigeria,Nationality,3.0,63.0,4.761904761904762,,,
+Brazil,Nigeria,Residence,,,,3.0,63.0,4.761904761904762
+Brazil,Peru,Nationality,5.0,63.0,7.936507936507936,,,
+Brazil,Peru,Residence,,,,5.0,63.0,7.936507936507936
+Brazil,Poland,Nationality,2.0,63.0,3.1746031746031744,,,
+Brazil,Poland,Residence,,,,2.0,63.0,3.1746031746031744
+Brazil,Prefer not to say,Nationality,3.0,63.0,4.761904761904762,,,
+Brazil,Prefer not to say,Residence,,,,4.0,63.0,6.349206349206349
+Brazil,Russia,Nationality,5.0,63.0,7.936507936507936,,,
+Brazil,Russia,Residence,,,,4.0,63.0,6.349206349206349
+Brazil,Singapore,Residence,,,,2.0,63.0,3.1746031746031744
+Brazil,Switzerland,Residence,,,,3.0,63.0,4.761904761904762
+Brazil,Ukraine,Nationality,4.0,63.0,6.349206349206349,,,
+Brazil,Ukraine,Residence,,,,2.0,63.0,3.1746031746031744
+Brazil,United Kingdom,Nationality,11.0,63.0,17.46031746031746,,,
+Brazil,United Kingdom,Residence,,,,6.0,63.0,9.523809523809524
+Brazil,United States,Nationality,10.0,63.0,15.873015873015872,,,
+Brazil,United States,Residence,,,,16.0,63.0,25.396825396825395
+Bulgaria,Bosnia and Herzegovina,Nationality,3.0,8.0,37.5,,,
+Bulgaria,Bosnia and Herzegovina,Residence,,,,3.0,8.0,37.5
+Bulgaria,Nigeria,Nationality,2.0,8.0,25.0,,,
+Bulgaria,Nigeria,Residence,,,,2.0,8.0,25.0
+Bulgaria,Romania,Nationality,1.0,8.0,12.5,,,
+Bulgaria,Thailand,Residence,,,,1.0,8.0,12.5
+Bulgaria,Ukraine,Nationality,1.0,8.0,12.5,,,
+Bulgaria,Ukraine,Residence,,,,1.0,8.0,12.5
+Bulgaria,United States,Nationality,1.0,8.0,12.5,,,
+Bulgaria,United States,Residence,,,,1.0,8.0,12.5
+Cambodia,China,Residence,,,,2.0,3.0,66.66666666666666
+Cambodia,Prefer not to say,Nationality,2.0,3.0,66.66666666666666,,,
+Cambodia,United Kingdom,Nationality,1.0,3.0,33.33333333333333,,,
+Cambodia,United Kingdom,Residence,,,,1.0,3.0,33.33333333333333
+Cameroon,Prefer not to say,Nationality,1.0,5.0,20.0,,,
+Cameroon,Prefer not to say,Residence,,,,1.0,5.0,20.0
+Cameroon,United States,Nationality,4.0,5.0,80.0,,,
+Cameroon,United States,Residence,,,,4.0,5.0,80.0
+Canada,Benin,Nationality,2.0,8.0,25.0,,,
+Canada,Canada,Nationality,3.0,8.0,37.5,,,
+Canada,Canada,Residence,,,,3.0,8.0,37.5
+Canada,Gambia,Nationality,1.0,8.0,12.5,,,
+Canada,Gambia,Residence,,,,1.0,8.0,12.5
+Canada,Prefer not to say,Residence,,,,2.0,8.0,25.0
+Canada,United States,Nationality,2.0,8.0,25.0,,,
+Canada,United States,Residence,,,,2.0,8.0,25.0
+Central African Republic,Israel,Nationality,1.0,1.0,100.0,,,
+Central African Republic,Israel,Residence,,,,1.0,1.0,100.0
+Chile,Peru,Nationality,3.0,3.0,100.0,,,
+Chile,Peru,Residence,,,,3.0,3.0,100.0
+China,Australia,Nationality,8.0,162.0,4.938271604938271,,,
+China,Australia,Residence,,,,8.0,162.0,4.938271604938271
+China,Bosnia and Herzegovina,Nationality,3.0,162.0,1.8518518518518516,,,
+China,Bosnia and Herzegovina,Residence,,,,3.0,162.0,1.8518518518518516
+China,Brazil,Nationality,1.0,162.0,0.6172839506172839,,,
+China,Brazil,Residence,,,,1.0,162.0,0.6172839506172839
+China,Bulgaria,Nationality,2.0,162.0,1.2345679012345678,,,
+China,Bulgaria,Residence,,,,2.0,162.0,1.2345679012345678
+China,Canada,Nationality,5.0,162.0,3.0864197530864197,,,
+China,Canada,Residence,,,,4.0,162.0,2.4691358024691357
+China,Finland,Nationality,1.0,162.0,0.6172839506172839,,,
+China,Finland,Residence,,,,1.0,162.0,0.6172839506172839
+China,Germany,Nationality,4.0,162.0,2.4691358024691357,,,
+China,Germany,Residence,,,,10.0,162.0,6.172839506172839
+China,Ireland,Nationality,2.0,162.0,1.2345679012345678,,,
+China,Ireland,Residence,,,,2.0,162.0,1.2345679012345678
+China,Israel,Nationality,9.0,162.0,5.555555555555555,,,
+China,Israel,Residence,,,,5.0,162.0,3.0864197530864197
+China,Italy,Nationality,1.0,162.0,0.6172839506172839,,,
+China,Italy,Residence,,,,1.0,162.0,0.6172839506172839
+China,Kenya,Nationality,3.0,162.0,1.8518518518518516,,,
+China,"Korea, South",Nationality,5.0,162.0,3.0864197530864197,,,
+China,"Korea, South",Residence,,,,5.0,162.0,3.0864197530864197
+China,Morocco,Residence,,,,3.0,162.0,1.8518518518518516
+China,Netherlands,Nationality,3.0,162.0,1.8518518518518516,,,
+China,Nigeria,Nationality,13.0,162.0,8.024691358024691,,,
+China,Nigeria,Residence,,,,8.0,162.0,4.938271604938271
+China,Peru,Nationality,2.0,162.0,1.2345679012345678,,,
+China,Peru,Residence,,,,2.0,162.0,1.2345679012345678
+China,Poland,Nationality,2.0,162.0,1.2345679012345678,,,
+China,Poland,Residence,,,,2.0,162.0,1.2345679012345678
+China,Prefer not to say,Nationality,10.0,162.0,6.172839506172839,,,
+China,Prefer not to say,Residence,,,,10.0,162.0,6.172839506172839
+China,Romania,Nationality,3.0,162.0,1.8518518518518516,,,
+China,Romania,Residence,,,,1.0,162.0,0.6172839506172839
+China,Russia,Nationality,7.0,162.0,4.320987654320987,,,
+China,Russia,Residence,,,,4.0,162.0,2.4691358024691357
+China,Singapore,Residence,,,,2.0,162.0,1.2345679012345678
+China,Switzerland,Residence,,,,10.0,162.0,6.172839506172839
+China,Thailand,Residence,,,,3.0,162.0,1.8518518518518516
+China,Trinidad and Tobago,Nationality,1.0,162.0,0.6172839506172839,,,
+China,Turkey,Residence,,,,2.0,162.0,1.2345679012345678
+China,Ukraine,Nationality,8.0,162.0,4.938271604938271,,,
+China,Ukraine,Residence,,,,3.0,162.0,1.8518518518518516
+China,United Arab Emirates,Residence,,,,5.0,162.0,3.0864197530864197
+China,United Kingdom,Nationality,27.0,162.0,16.666666666666664,,,
+China,United Kingdom,Residence,,,,20.0,162.0,12.345679012345679
+China,United States,Nationality,42.0,162.0,25.925925925925924,,,
+China,United States,Residence,,,,45.0,162.0,27.77777777777778
+Colombia,Peru,Nationality,3.0,5.0,60.0,,,
+Colombia,Peru,Residence,,,,3.0,5.0,60.0
+Colombia,United States,Nationality,2.0,5.0,40.0,,,
+Colombia,United States,Residence,,,,2.0,5.0,40.0
+Cuba,United States,Nationality,1.0,1.0,100.0,,,
+Cuba,United States,Residence,,,,1.0,1.0,100.0
+Cyprus,Netherlands,Nationality,1.0,3.0,33.33333333333333,,,
+Cyprus,Nigeria,Nationality,1.0,3.0,33.33333333333333,,,
+Cyprus,Nigeria,Residence,,,,1.0,3.0,33.33333333333333
+Cyprus,Turkey,Residence,,,,1.0,3.0,33.33333333333333
+Cyprus,United States,Nationality,1.0,3.0,33.33333333333333,,,
+Cyprus,United States,Residence,,,,1.0,3.0,33.33333333333333
+Czech Republic,United Kingdom,Nationality,2.0,4.0,50.0,,,
+Czech Republic,United Kingdom,Residence,,,,2.0,4.0,50.0
+Czech Republic,United States,Nationality,2.0,4.0,50.0,,,
+Czech Republic,United States,Residence,,,,2.0,4.0,50.0
+Dominican Republic,United States,Nationality,1.0,1.0,100.0,,,
+Dominican Republic,United States,Residence,,,,1.0,1.0,100.0
+Ecuador,Peru,Nationality,3.0,3.0,100.0,,,
+Ecuador,Peru,Residence,,,,3.0,3.0,100.0
+Egypt,United Kingdom,Nationality,1.0,1.0,100.0,,,
+Egypt,United States,Residence,,,,1.0,1.0,100.0
+Equatorial Guinea,Gambia,Nationality,1.0,1.0,100.0,,,
+Equatorial Guinea,Gambia,Residence,,,,1.0,1.0,100.0
+Estonia,Australia,Nationality,2.0,10.0,20.0,,,
+Estonia,Australia,Residence,,,,2.0,10.0,20.0
+Estonia,Italy,Nationality,2.0,10.0,20.0,,,
+Estonia,Italy,Residence,,,,2.0,10.0,20.0
+Estonia,Nigeria,Nationality,2.0,10.0,20.0,,,
+Estonia,Nigeria,Residence,,,,2.0,10.0,20.0
+Estonia,United States,Nationality,4.0,10.0,40.0,,,
+Estonia,United States,Residence,,,,4.0,10.0,40.0
+Ethiopia,United States,Nationality,2.0,2.0,100.0,,,
+Ethiopia,United States,Residence,,,,2.0,2.0,100.0
+France,Bosnia and Herzegovina,Nationality,1.0,8.0,12.5,,,
+France,Bosnia and Herzegovina,Residence,,,,1.0,8.0,12.5
+France,Canada,Nationality,1.0,8.0,12.5,,,
+France,Canada,Residence,,,,1.0,8.0,12.5
+France,Finland,Nationality,1.0,8.0,12.5,,,
+France,Finland,Residence,,,,1.0,8.0,12.5
+France,Nigeria,Nationality,1.0,8.0,12.5,,,
+France,Nigeria,Residence,,,,1.0,8.0,12.5
+France,Prefer not to say,Nationality,1.0,8.0,12.5,,,
+France,Prefer not to say,Residence,,,,1.0,8.0,12.5
+France,United Kingdom,Nationality,1.0,8.0,12.5,,,
+France,United States,Nationality,2.0,8.0,25.0,,,
+France,United States,Residence,,,,3.0,8.0,37.5
+Gambia,Gambia,Nationality,3.0,4.0,75.0,,,
+Gambia,Gambia,Residence,,,,3.0,4.0,75.0
+Gambia,Ghana,Residence,,,,1.0,4.0,25.0
+Gambia,Swaziland,Nationality,1.0,4.0,25.0,,,
+Georgia,United Kingdom,Nationality,1.0,2.0,50.0,,,
+Georgia,United Kingdom,Residence,,,,1.0,2.0,50.0
+Georgia,United States,Nationality,1.0,2.0,50.0,,,
+Georgia,United States,Residence,,,,1.0,2.0,50.0
+Germany,Benin,Nationality,1.0,13.0,7.6923076923076925,,,
+Germany,Bosnia and Herzegovina,Nationality,1.0,13.0,7.6923076923076925,,,
+Germany,Bosnia and Herzegovina,Residence,,,,1.0,13.0,7.6923076923076925
+Germany,Finland,Nationality,2.0,13.0,15.384615384615385,,,
+Germany,Finland,Residence,,,,2.0,13.0,15.384615384615385
+Germany,Israel,Nationality,1.0,13.0,7.6923076923076925,,,
+Germany,Israel,Residence,,,,1.0,13.0,7.6923076923076925
+Germany,Prefer not to say,Nationality,1.0,13.0,7.6923076923076925,,,
+Germany,Prefer not to say,Residence,,,,2.0,13.0,15.384615384615385
+Germany,United Kingdom,Nationality,5.0,13.0,38.46153846153847,,,
+Germany,United Kingdom,Residence,,,,2.0,13.0,15.384615384615385
+Germany,United States,Nationality,2.0,13.0,15.384615384615385,,,
+Germany,United States,Residence,,,,5.0,13.0,38.46153846153847
+Ghana,Gambia,Nationality,3.0,23.0,13.043478260869565,,,
+Ghana,Gambia,Residence,,,,3.0,23.0,13.043478260869565
+Ghana,Ghana,Residence,,,,5.0,23.0,21.73913043478261
+Ghana,Ireland,Nationality,1.0,23.0,4.3478260869565215,,,
+Ghana,Ireland,Residence,,,,1.0,23.0,4.3478260869565215
+Ghana,Italy,Nationality,1.0,23.0,4.3478260869565215,,,
+Ghana,Italy,Residence,,,,1.0,23.0,4.3478260869565215
+Ghana,Kenya,Nationality,1.0,23.0,4.3478260869565215,,,
+Ghana,Morocco,Residence,,,,1.0,23.0,4.3478260869565215
+Ghana,Nigeria,Nationality,2.0,23.0,8.695652173913043,,,
+Ghana,Nigeria,Residence,,,,2.0,23.0,8.695652173913043
+Ghana,Swaziland,Nationality,5.0,23.0,21.73913043478261,,,
+Ghana,United Kingdom,Nationality,3.0,23.0,13.043478260869565,,,
+Ghana,United Kingdom,Residence,,,,3.0,23.0,13.043478260869565
+Ghana,United States,Nationality,7.0,23.0,30.434782608695656,,,
+Ghana,United States,Residence,,,,7.0,23.0,30.434782608695656
+Greece,Benin,Nationality,1.0,1.0,100.0,,,
+Greece,Prefer not to say,Residence,,,,1.0,1.0,100.0
+Guinea-Bissau,Gambia,Nationality,1.0,1.0,100.0,,,
+Guinea-Bissau,Gambia,Residence,,,,1.0,1.0,100.0
+Haiti,Benin,Nationality,1.0,3.0,33.33333333333333,,,
+Haiti,Prefer not to say,Nationality,1.0,3.0,33.33333333333333,,,
+Haiti,Prefer not to say,Residence,,,,2.0,3.0,66.66666666666666
+Haiti,United Kingdom,Residence,,,,1.0,3.0,33.33333333333333
+Haiti,United States,Nationality,1.0,3.0,33.33333333333333,,,
+Hungary,Nigeria,Nationality,1.0,1.0,100.0,,,
+Hungary,Nigeria,Residence,,,,1.0,1.0,100.0
+India,Australia,Nationality,3.0,40.0,7.5,,,
+India,Australia,Residence,,,,3.0,40.0,7.5
+India,Benin,Nationality,4.0,40.0,10.0,,,
+India,Israel,Nationality,1.0,40.0,2.5,,,
+India,Israel,Residence,,,,1.0,40.0,2.5
+India,Italy,Nationality,1.0,40.0,2.5,,,
+India,Italy,Residence,,,,1.0,40.0,2.5
+India,"Korea, South",Nationality,1.0,40.0,2.5,,,
+India,"Korea, South",Residence,,,,1.0,40.0,2.5
+India,Netherlands,Nationality,2.0,40.0,5.0,,,
+India,Nigeria,Nationality,4.0,40.0,10.0,,,
+India,Poland,Nationality,1.0,40.0,2.5,,,
+India,Poland,Residence,,,,1.0,40.0,2.5
+India,Prefer not to say,Nationality,2.0,40.0,5.0,,,
+India,Prefer not to say,Residence,,,,6.0,40.0,15.0
+India,Romania,Nationality,3.0,40.0,7.5,,,
+India,Russia,Residence,,,,2.0,40.0,5.0
+India,Singapore,Residence,,,,2.0,40.0,5.0
+India,Thailand,Residence,,,,3.0,40.0,7.5
+India,United Arab Emirates,Residence,,,,4.0,40.0,10.0
+India,United Kingdom,Nationality,4.0,40.0,10.0,,,
+India,United Kingdom,Residence,,,,4.0,40.0,10.0
+India,United States,Nationality,14.0,40.0,35.0,,,
+India,United States,Residence,,,,12.0,40.0,30.0
+Indonesia,Australia,Nationality,3.0,8.0,37.5,,,
+Indonesia,Australia,Residence,,,,1.0,8.0,12.5
+Indonesia,Italy,Nationality,1.0,8.0,12.5,,,
+Indonesia,Italy,Residence,,,,1.0,8.0,12.5
+Indonesia,Singapore,Residence,,,,2.0,8.0,25.0
+Indonesia,United Kingdom,Nationality,2.0,8.0,25.0,,,
+Indonesia,United Kingdom,Residence,,,,1.0,8.0,12.5
+Indonesia,United States,Nationality,2.0,8.0,25.0,,,
+Indonesia,United States,Residence,,,,3.0,8.0,37.5
+Iran,Australia,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Bosnia and Herzegovina,Nationality,1.0,33.0,3.0303030303030303,,,
+Iran,Bosnia and Herzegovina,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Canada,Nationality,1.0,33.0,3.0303030303030303,,,
+Iran,Canada,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Germany,Nationality,1.0,33.0,3.0303030303030303,,,
+Iran,Germany,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Israel,Nationality,3.0,33.0,9.090909090909092,,,
+Iran,Israel,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Kenya,Nationality,1.0,33.0,3.0303030303030303,,,
+Iran,Morocco,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Peru,Nationality,2.0,33.0,6.0606060606060606,,,
+Iran,Peru,Residence,,,,2.0,33.0,6.0606060606060606
+Iran,Poland,Nationality,2.0,33.0,6.0606060606060606,,,
+Iran,Poland,Residence,,,,2.0,33.0,6.0606060606060606
+Iran,Switzerland,Residence,,,,2.0,33.0,6.0606060606060606
+Iran,Thailand,Residence,,,,1.0,33.0,3.0303030303030303
+Iran,Trinidad and Tobago,Nationality,1.0,33.0,3.0303030303030303,,,
+Iran,Ukraine,Nationality,3.0,33.0,9.090909090909092,,,
+Iran,Ukraine,Residence,,,,2.0,33.0,6.0606060606060606
+Iran,United Kingdom,Nationality,5.0,33.0,15.151515151515152,,,
+Iran,United Kingdom,Residence,,,,3.0,33.0,9.090909090909092
+Iran,United States,Nationality,13.0,33.0,39.39393939393939,,,
+Iran,United States,Residence,,,,15.0,33.0,45.45454545454545
+Israel,Australia,Nationality,2.0,14.0,14.285714285714285,,,
+Israel,Australia,Residence,,,,1.0,14.0,7.142857142857142
+Israel,China,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Gambia,Nationality,1.0,14.0,7.142857142857142,,,
+Israel,Gambia,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Germany,Nationality,1.0,14.0,7.142857142857142,,,
+Israel,Germany,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Nigeria,Nationality,4.0,14.0,28.57142857142857,,,
+Israel,Nigeria,Residence,,,,2.0,14.0,14.285714285714285
+Israel,Prefer not to say,Nationality,1.0,14.0,7.142857142857142,,,
+Israel,Singapore,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Switzerland,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Thailand,Residence,,,,1.0,14.0,7.142857142857142
+Israel,Trinidad and Tobago,Nationality,1.0,14.0,7.142857142857142,,,
+Israel,United Arab Emirates,Residence,,,,2.0,14.0,14.285714285714285
+Israel,United Kingdom,Nationality,1.0,14.0,7.142857142857142,,,
+Israel,United States,Nationality,3.0,14.0,21.428571428571427,,,
+Israel,United States,Residence,,,,3.0,14.0,21.428571428571427
+Italy,Benin,Nationality,1.0,5.0,20.0,,,
+Italy,Bosnia and Herzegovina,Nationality,2.0,5.0,40.0,,,
+Italy,Bosnia and Herzegovina,Residence,,,,2.0,5.0,40.0
+Italy,Nigeria,Nationality,1.0,5.0,20.0,,,
+Italy,Nigeria,Residence,,,,1.0,5.0,20.0
+Italy,Prefer not to say,Residence,,,,1.0,5.0,20.0
+Italy,United Kingdom,Nationality,1.0,5.0,20.0,,,
+Italy,United Kingdom,Residence,,,,1.0,5.0,20.0
+Ivory Coast,Bosnia and Herzegovina,Nationality,1.0,4.0,25.0,,,
+Ivory Coast,Bosnia and Herzegovina,Residence,,,,1.0,4.0,25.0
+Ivory Coast,United Kingdom,Nationality,1.0,4.0,25.0,,,
+Ivory Coast,United States,Nationality,2.0,4.0,50.0,,,
+Ivory Coast,United States,Residence,,,,3.0,4.0,75.0
+Jamaica,United States,Nationality,1.0,1.0,100.0,,,
+Jamaica,United States,Residence,,,,1.0,1.0,100.0
+Japan,China,Residence,,,,1.0,1.0,100.0
+Japan,Prefer not to say,Nationality,1.0,1.0,100.0,,,
+Kazakhstan,Germany,Residence,,,,4.0,11.0,36.36363636363637
+Kazakhstan,Poland,Nationality,1.0,11.0,9.090909090909092,,,
+Kazakhstan,Poland,Residence,,,,1.0,11.0,9.090909090909092
+Kazakhstan,Russia,Nationality,2.0,11.0,18.181818181818183,,,
+Kazakhstan,Russia,Residence,,,,1.0,11.0,9.090909090909092
+Kazakhstan,Ukraine,Nationality,2.0,11.0,18.181818181818183,,,
+Kazakhstan,Ukraine,Residence,,,,2.0,11.0,18.181818181818183
+Kazakhstan,United States,Nationality,6.0,11.0,54.54545454545454,,,
+Kazakhstan,United States,Residence,,,,3.0,11.0,27.27272727272727
+Kenya,Ghana,Residence,,,,1.0,2.0,50.0
+Kenya,Swaziland,Nationality,1.0,2.0,50.0,,,
+Kenya,United Kingdom,Nationality,1.0,2.0,50.0,,,
+Kenya,United Kingdom,Residence,,,,1.0,2.0,50.0
+Korea North,United Kingdom,Nationality,1.0,1.0,100.0,,,
+Korea North,United Kingdom,Residence,,,,1.0,1.0,100.0
+"Korea, North",Australia,Nationality,5.0,64.0,7.8125,,,
+"Korea, North",Australia,Residence,,,,7.0,64.0,10.9375
+"Korea, North",Brazil,Nationality,1.0,64.0,1.5625,,,
+"Korea, North",Brazil,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Canada,Nationality,1.0,64.0,1.5625,,,
+"Korea, North",Canada,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Germany,Residence,,,,4.0,64.0,6.25
+"Korea, North",Israel,Nationality,2.0,64.0,3.125,,,
+"Korea, North",Israel,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Kenya,Nationality,4.0,64.0,6.25,,,
+"Korea, North","Korea, South",Nationality,4.0,64.0,6.25,,,
+"Korea, North","Korea, South",Residence,,,,4.0,64.0,6.25
+"Korea, North",Morocco,Residence,,,,4.0,64.0,6.25
+"Korea, North",Netherlands,Nationality,2.0,64.0,3.125,,,
+"Korea, North",Nigeria,Nationality,3.0,64.0,4.6875,,,
+"Korea, North",Nigeria,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Poland,Nationality,2.0,64.0,3.125,,,
+"Korea, North",Poland,Residence,,,,2.0,64.0,3.125
+"Korea, North",Prefer not to say,Nationality,3.0,64.0,4.6875,,,
+"Korea, North",Prefer not to say,Residence,,,,3.0,64.0,4.6875
+"Korea, North",Romania,Nationality,1.0,64.0,1.5625,,,
+"Korea, North",Russia,Nationality,2.0,64.0,3.125,,,
+"Korea, North",Singapore,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Switzerland,Residence,,,,1.0,64.0,1.5625
+"Korea, North",Thailand,Residence,,,,2.0,64.0,3.125
+"Korea, North",Trinidad and Tobago,Nationality,1.0,64.0,1.5625,,,
+"Korea, North",Turkey,Residence,,,,2.0,64.0,3.125
+"Korea, North",Ukraine,Nationality,1.0,64.0,1.5625,,,
+"Korea, North",Ukraine,Residence,,,,1.0,64.0,1.5625
+"Korea, North",United Arab Emirates,Residence,,,,2.0,64.0,3.125
+"Korea, North",United Kingdom,Nationality,9.0,64.0,14.0625,,,
+"Korea, North",United Kingdom,Residence,,,,5.0,64.0,7.8125
+"Korea, North",United States,Nationality,23.0,64.0,35.9375,,,
+"Korea, North",United States,Residence,,,,22.0,64.0,34.375
+"Korea, South",Benin,Nationality,1.0,5.0,20.0,,,
+"Korea, South",Israel,Nationality,1.0,5.0,20.0,,,
+"Korea, South",Israel,Residence,,,,1.0,5.0,20.0
+"Korea, South",Nigeria,Nationality,2.0,5.0,40.0,,,
+"Korea, South",Prefer not to say,Residence,,,,1.0,5.0,20.0
+"Korea, South",United Arab Emirates,Residence,,,,2.0,5.0,40.0
+"Korea, South",United Kingdom,Nationality,1.0,5.0,20.0,,,
+"Korea, South",United Kingdom,Residence,,,,1.0,5.0,20.0
+Laos,Benin,Nationality,1.0,3.0,33.33333333333333,,,
+Laos,China,Residence,,,,2.0,3.0,66.66666666666666
+Laos,Prefer not to say,Nationality,2.0,3.0,66.66666666666666,,,
+Laos,Prefer not to say,Residence,,,,1.0,3.0,33.33333333333333
+Latvia,Australia,Nationality,1.0,11.0,9.090909090909092,,,
+Latvia,Australia,Residence,,,,1.0,11.0,9.090909090909092
+Latvia,Germany,Residence,,,,3.0,11.0,27.27272727272727
+Latvia,Italy,Nationality,2.0,11.0,18.181818181818183,,,
+Latvia,Italy,Residence,,,,2.0,11.0,18.181818181818183
+Latvia,Russia,Nationality,2.0,11.0,18.181818181818183,,,
+Latvia,United Kingdom,Nationality,5.0,11.0,45.45454545454545,,,
+Latvia,United Kingdom,Residence,,,,5.0,11.0,45.45454545454545
+Latvia,United States,Nationality,1.0,11.0,9.090909090909092,,,
+Lebanon,Austria,Nationality,2.0,2.0,100.0,,,
+Lebanon,France,Residence,,,,2.0,2.0,100.0
+Lithuania,United Kingdom,Nationality,1.0,2.0,50.0,,,
+Lithuania,United Kingdom,Residence,,,,1.0,2.0,50.0
+Lithuania,United States,Nationality,1.0,2.0,50.0,,,
+Lithuania,United States,Residence,,,,1.0,2.0,50.0
+Luxembourg,Australia,Nationality,1.0,1.0,100.0,,,
+Luxembourg,Australia,Residence,,,,1.0,1.0,100.0
+Malaysia,Australia,Nationality,6.0,12.0,50.0,,,
+Malaysia,Australia,Residence,,,,4.0,12.0,33.33333333333333
+Malaysia,Russia,Nationality,1.0,12.0,8.333333333333332,,,
+Malaysia,Russia,Residence,,,,1.0,12.0,8.333333333333332
+Malaysia,Singapore,Residence,,,,2.0,12.0,16.666666666666664
+Malaysia,United Kingdom,Nationality,2.0,12.0,16.666666666666664,,,
+Malaysia,United Kingdom,Residence,,,,1.0,12.0,8.333333333333332
+Malaysia,United States,Nationality,3.0,12.0,25.0,,,
+Malaysia,United States,Residence,,,,4.0,12.0,33.33333333333333
+Mali,Gambia,Nationality,1.0,1.0,100.0,,,
+Mali,Gambia,Residence,,,,1.0,1.0,100.0
+Malta,United Kingdom,Nationality,1.0,1.0,100.0,,,
+Malta,United Kingdom,Residence,,,,1.0,1.0,100.0
+Mauritius,Ghana,Residence,,,,1.0,1.0,100.0
+Mauritius,Swaziland,Nationality,1.0,1.0,100.0,,,
+Mexico,Australia,Nationality,1.0,7.0,14.285714285714285,,,
+Mexico,Israel,Nationality,1.0,7.0,14.285714285714285,,,
+Mexico,Israel,Residence,,,,1.0,7.0,14.285714285714285
+Mexico,Prefer not to say,Nationality,1.0,7.0,14.285714285714285,,,
+Mexico,Prefer not to say,Residence,,,,1.0,7.0,14.285714285714285
+Mexico,Singapore,Residence,,,,1.0,7.0,14.285714285714285
+Mexico,United Kingdom,Nationality,1.0,7.0,14.285714285714285,,,
+Mexico,United Kingdom,Residence,,,,1.0,7.0,14.285714285714285
+Mexico,United States,Nationality,3.0,7.0,42.857142857142854,,,
+Mexico,United States,Residence,,,,3.0,7.0,42.857142857142854
+Moldova,Australia,Nationality,1.0,16.0,6.25,,,
+Moldova,Australia,Residence,,,,1.0,16.0,6.25
+Moldova,Bulgaria,Nationality,1.0,16.0,6.25,,,
+Moldova,Bulgaria,Residence,,,,1.0,16.0,6.25
+Moldova,Israel,Nationality,5.0,16.0,31.25,,,
+Moldova,Israel,Residence,,,,5.0,16.0,31.25
+Moldova,Romania,Nationality,1.0,16.0,6.25,,,
+Moldova,Thailand,Residence,,,,1.0,16.0,6.25
+Moldova,Ukraine,Nationality,3.0,16.0,18.75,,,
+Moldova,Ukraine,Residence,,,,3.0,16.0,18.75
+Moldova,United Kingdom,Nationality,2.0,16.0,12.5,,,
+Moldova,United Kingdom,Residence,,,,1.0,16.0,6.25
+Moldova,United States,Nationality,3.0,16.0,18.75,,,
+Moldova,United States,Residence,,,,4.0,16.0,25.0
+Morocco,Canada,Nationality,1.0,4.0,25.0,,,
+Morocco,Israel,Nationality,1.0,4.0,25.0,,,
+Morocco,Israel,Residence,,,,1.0,4.0,25.0
+Morocco,Switzerland,Residence,,,,1.0,4.0,25.0
+Morocco,United States,Nationality,2.0,4.0,50.0,,,
+Morocco,United States,Residence,,,,2.0,4.0,50.0
+Mozambique,Benin,Nationality,1.0,1.0,100.0,,,
+Mozambique,Prefer not to say,Residence,,,,1.0,1.0,100.0
+Myanmar,Benin,Nationality,1.0,3.0,33.33333333333333,,,
+Myanmar,China,Residence,,,,1.0,3.0,33.33333333333333
+Myanmar,Prefer not to say,Nationality,1.0,3.0,33.33333333333333,,,
+Myanmar,Prefer not to say,Residence,,,,1.0,3.0,33.33333333333333
+Myanmar,United Kingdom,Residence,,,,1.0,3.0,33.33333333333333
+Myanmar,United States,Nationality,1.0,3.0,33.33333333333333,,,
+Netherlands,Bosnia and Herzegovina,Nationality,1.0,12.0,8.333333333333332,,,
+Netherlands,Bosnia and Herzegovina,Residence,,,,1.0,12.0,8.333333333333332
+Netherlands,Netherlands,Nationality,6.0,12.0,50.0,,,
+Netherlands,Netherlands,Residence,,,,4.0,12.0,33.33333333333333
+Netherlands,Nigeria,Nationality,2.0,12.0,16.666666666666664,,,
+Netherlands,Nigeria,Residence,,,,2.0,12.0,16.666666666666664
+Netherlands,Turkey,Residence,,,,2.0,12.0,16.666666666666664
+Netherlands,United Kingdom,Nationality,2.0,12.0,16.666666666666664,,,
+Netherlands,United Kingdom,Residence,,,,1.0,12.0,8.333333333333332
+Netherlands,United States,Nationality,1.0,12.0,8.333333333333332,,,
+Netherlands,United States,Residence,,,,2.0,12.0,16.666666666666664
+Nigeria,Australia,Nationality,10.0,143.0,6.993006993006993,,,
+Nigeria,Australia,Residence,,,,9.0,143.0,6.293706293706294
+Nigeria,Austria,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Bosnia and Herzegovina,Nationality,5.0,143.0,3.4965034965034967,,,
+Nigeria,Bosnia and Herzegovina,Residence,,,,5.0,143.0,3.4965034965034967
+Nigeria,Brazil,Nationality,1.0,143.0,0.6993006993006993,,,
+Nigeria,Brazil,Residence,,,,1.0,143.0,0.6993006993006993
+Nigeria,Bulgaria,Nationality,3.0,143.0,2.097902097902098,,,
+Nigeria,Bulgaria,Residence,,,,3.0,143.0,2.097902097902098
+Nigeria,Canada,Nationality,4.0,143.0,2.797202797202797,,,
+Nigeria,Canada,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,France,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Gambia,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Gambia,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Germany,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Germany,Residence,,,,6.0,143.0,4.195804195804196
+Nigeria,Ghana,Residence,,,,5.0,143.0,3.4965034965034967
+Nigeria,Ireland,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Ireland,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Israel,Nationality,3.0,143.0,2.097902097902098,,,
+Nigeria,Israel,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Italy,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Italy,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Kenya,Nationality,1.0,143.0,0.6993006993006993,,,
+Nigeria,"Korea, South",Nationality,1.0,143.0,0.6993006993006993,,,
+Nigeria,"Korea, South",Residence,,,,1.0,143.0,0.6993006993006993
+Nigeria,Morocco,Residence,,,,1.0,143.0,0.6993006993006993
+Nigeria,Netherlands,Nationality,7.0,143.0,4.895104895104895,,,
+Nigeria,Netherlands,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Nigeria,Nationality,8.0,143.0,5.594405594405594,,,
+Nigeria,Nigeria,Residence,,,,5.0,143.0,3.4965034965034967
+Nigeria,Poland,Nationality,1.0,143.0,0.6993006993006993,,,
+Nigeria,Poland,Residence,,,,1.0,143.0,0.6993006993006993
+Nigeria,Prefer not to say,Nationality,5.0,143.0,3.4965034965034967,,,
+Nigeria,Prefer not to say,Residence,,,,5.0,143.0,3.4965034965034967
+Nigeria,Romania,Nationality,3.0,143.0,2.097902097902098,,,
+Nigeria,Russia,Nationality,3.0,143.0,2.097902097902098,,,
+Nigeria,Russia,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,Singapore,Residence,,,,3.0,143.0,2.097902097902098
+Nigeria,Spain,Residence,,,,1.0,143.0,0.6993006993006993
+Nigeria,Swaziland,Nationality,5.0,143.0,3.4965034965034967,,,
+Nigeria,Switzerland,Residence,,,,3.0,143.0,2.097902097902098
+Nigeria,Thailand,Residence,,,,5.0,143.0,3.4965034965034967
+Nigeria,Trinidad and Tobago,Nationality,2.0,143.0,1.3986013986013985,,,
+Nigeria,Turkey,Residence,,,,4.0,143.0,2.797202797202797
+Nigeria,Ukraine,Nationality,4.0,143.0,2.797202797202797,,,
+Nigeria,Ukraine,Residence,,,,2.0,143.0,1.3986013986013985
+Nigeria,United Arab Emirates,Residence,,,,3.0,143.0,2.097902097902098
+Nigeria,United Kingdom,Nationality,26.0,143.0,18.181818181818183,,,
+Nigeria,United Kingdom,Residence,,,,20.0,143.0,13.986013986013987
+Nigeria,United States,Nationality,41.0,143.0,28.671328671328673,,,
+Nigeria,United States,Residence,,,,44.0,143.0,30.76923076923077
+Pakistan,Israel,Nationality,1.0,4.0,25.0,,,
+Pakistan,Italy,Nationality,1.0,4.0,25.0,,,
+Pakistan,Italy,Residence,,,,1.0,4.0,25.0
+Pakistan,Prefer not to say,Nationality,1.0,4.0,25.0,,,
+Pakistan,Prefer not to say,Residence,,,,1.0,4.0,25.0
+Pakistan,Switzerland,Residence,,,,1.0,4.0,25.0
+Pakistan,United States,Nationality,1.0,4.0,25.0,,,
+Pakistan,United States,Residence,,,,1.0,4.0,25.0
+Panama,Bosnia and Herzegovina,Nationality,1.0,3.0,33.33333333333333,,,
+Panama,Bosnia and Herzegovina,Residence,,,,1.0,3.0,33.33333333333333
+Panama,Israel,Nationality,1.0,3.0,33.33333333333333,,,
+Panama,Switzerland,Residence,,,,1.0,3.0,33.33333333333333
+Panama,United States,Nationality,1.0,3.0,33.33333333333333,,,
+Panama,United States,Residence,,,,1.0,3.0,33.33333333333333
+Peru,Peru,Nationality,3.0,3.0,100.0,,,
+Peru,Peru,Residence,,,,3.0,3.0,100.0
+Philippines,Australia,Nationality,3.0,11.0,27.27272727272727,,,
+Philippines,Australia,Residence,,,,3.0,11.0,27.27272727272727
+Philippines,Germany,Residence,,,,1.0,11.0,9.090909090909092
+Philippines,Romania,Nationality,3.0,11.0,27.27272727272727,,,
+Philippines,Russia,Nationality,1.0,11.0,9.090909090909092,,,
+Philippines,Thailand,Residence,,,,3.0,11.0,27.27272727272727
+Philippines,United Kingdom,Nationality,2.0,11.0,18.181818181818183,,,
+Philippines,United Kingdom,Residence,,,,1.0,11.0,9.090909090909092
+Philippines,United States,Nationality,2.0,11.0,18.181818181818183,,,
+Philippines,United States,Residence,,,,3.0,11.0,27.27272727272727
+Poland,Brazil,Nationality,2.0,13.0,15.384615384615385,,,
+Poland,Brazil,Residence,,,,2.0,13.0,15.384615384615385
+Poland,Bulgaria,Nationality,1.0,13.0,7.6923076923076925,,,
+Poland,Bulgaria,Residence,,,,1.0,13.0,7.6923076923076925
+Poland,Germany,Residence,,,,1.0,13.0,7.6923076923076925
+Poland,Poland,Nationality,8.0,13.0,61.53846153846154,,,
+Poland,Poland,Residence,,,,8.0,13.0,61.53846153846154
+Poland,United Kingdom,Nationality,1.0,13.0,7.6923076923076925,,,
+Poland,United Kingdom,Residence,,,,1.0,13.0,7.6923076923076925
+Poland,United States,Nationality,1.0,13.0,7.6923076923076925,,,
+Romania,Australia,Nationality,2.0,96.0,2.083333333333333,,,
+Romania,Australia,Residence,,,,5.0,96.0,5.208333333333334
+Romania,Bosnia and Herzegovina,Nationality,4.0,96.0,4.166666666666666,,,
+Romania,Bosnia and Herzegovina,Residence,,,,4.0,96.0,4.166666666666666
+Romania,Brazil,Nationality,1.0,96.0,1.0416666666666665,,,
+Romania,Brazil,Residence,,,,1.0,96.0,1.0416666666666665
+Romania,Finland,Nationality,3.0,96.0,3.125,,,
+Romania,Finland,Residence,,,,3.0,96.0,3.125
+Romania,Germany,Nationality,2.0,96.0,2.083333333333333,,,
+Romania,Germany,Residence,,,,4.0,96.0,4.166666666666666
+Romania,Ireland,Nationality,1.0,96.0,1.0416666666666665,,,
+Romania,Ireland,Residence,,,,1.0,96.0,1.0416666666666665
+Romania,Israel,Nationality,1.0,96.0,1.0416666666666665,,,
+Romania,Israel,Residence,,,,1.0,96.0,1.0416666666666665
+Romania,Kenya,Nationality,1.0,96.0,1.0416666666666665,,,
+Romania,Morocco,Residence,,,,1.0,96.0,1.0416666666666665
+Romania,Netherlands,Nationality,3.0,96.0,3.125,,,
+Romania,Nigeria,Nationality,8.0,96.0,8.333333333333332,,,
+Romania,Nigeria,Residence,,,,8.0,96.0,8.333333333333332
+Romania,Prefer not to say,Nationality,5.0,96.0,5.208333333333334,,,
+Romania,Prefer not to say,Residence,,,,5.0,96.0,5.208333333333334
+Romania,Romania,Nationality,8.0,96.0,8.333333333333332,,,
+Romania,Romania,Residence,,,,5.0,96.0,5.208333333333334
+Romania,Russia,Nationality,5.0,96.0,5.208333333333334,,,
+Romania,Russia,Residence,,,,3.0,96.0,3.125
+Romania,Thailand,Residence,,,,3.0,96.0,3.125
+Romania,Turkey,Residence,,,,3.0,96.0,3.125
+Romania,Ukraine,Nationality,7.0,96.0,7.291666666666667,,,
+Romania,Ukraine,Residence,,,,4.0,96.0,4.166666666666666
+Romania,United Kingdom,Nationality,14.0,96.0,14.583333333333334,,,
+Romania,United Kingdom,Residence,,,,7.0,96.0,7.291666666666667
+Romania,United States,Nationality,31.0,96.0,32.29166666666667,,,
+Romania,United States,Residence,,,,38.0,96.0,39.58333333333333
+Russia,Australia,Nationality,19.0,304.0,6.25,,,
+Russia,Australia,Residence,,,,17.0,304.0,5.592105263157895
+Russia,Austria,Nationality,1.0,304.0,0.3289473684210526,,,
+Russia,Bosnia and Herzegovina,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Bosnia and Herzegovina,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Brazil,Nationality,9.0,304.0,2.9605263157894735,,,
+Russia,Brazil,Residence,,,,9.0,304.0,2.9605263157894735
+Russia,Bulgaria,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Bulgaria,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Canada,Nationality,5.0,304.0,1.644736842105263,,,
+Russia,Canada,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Finland,Nationality,5.0,304.0,1.644736842105263,,,
+Russia,Finland,Residence,,,,5.0,304.0,1.644736842105263
+Russia,France,Residence,,,,1.0,304.0,0.3289473684210526
+Russia,Gambia,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Gambia,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Germany,Nationality,6.0,304.0,1.9736842105263157,,,
+Russia,Germany,Residence,,,,16.0,304.0,5.263157894736842
+Russia,Ireland,Nationality,3.0,304.0,0.9868421052631579,,,
+Russia,Ireland,Residence,,,,3.0,304.0,0.9868421052631579
+Russia,Israel,Nationality,15.0,304.0,4.934210526315789,,,
+Russia,Israel,Residence,,,,11.0,304.0,3.618421052631579
+Russia,Italy,Nationality,4.0,304.0,1.3157894736842104,,,
+Russia,Italy,Residence,,,,4.0,304.0,1.3157894736842104
+Russia,Kenya,Nationality,5.0,304.0,1.644736842105263,,,
+Russia,"Korea, South",Nationality,1.0,304.0,0.3289473684210526,,,
+Russia,"Korea, South",Residence,,,,1.0,304.0,0.3289473684210526
+Russia,Morocco,Residence,,,,5.0,304.0,1.644736842105263
+Russia,Netherlands,Nationality,11.0,304.0,3.618421052631579,,,
+Russia,Netherlands,Residence,,,,3.0,304.0,0.9868421052631579
+Russia,Nigeria,Nationality,15.0,304.0,4.934210526315789,,,
+Russia,Nigeria,Residence,,,,11.0,304.0,3.618421052631579
+Russia,Peru,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Peru,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Poland,Nationality,9.0,304.0,2.9605263157894735,,,
+Russia,Poland,Residence,,,,9.0,304.0,2.9605263157894735
+Russia,Prefer not to say,Nationality,9.0,304.0,2.9605263157894735,,,
+Russia,Prefer not to say,Residence,,,,13.0,304.0,4.276315789473684
+Russia,Romania,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Russia,Nationality,9.0,304.0,2.9605263157894735,,,
+Russia,Russia,Residence,,,,8.0,304.0,2.631578947368421
+Russia,Singapore,Residence,,,,3.0,304.0,0.9868421052631579
+Russia,Spain,Residence,,,,4.0,304.0,1.3157894736842104
+Russia,Sweden,Nationality,2.0,304.0,0.6578947368421052,,,
+Russia,Sweden,Residence,,,,2.0,304.0,0.6578947368421052
+Russia,Switzerland,Residence,,,,12.0,304.0,3.9473684210526314
+Russia,Thailand,Residence,,,,6.0,304.0,1.9736842105263157
+Russia,Trinidad and Tobago,Nationality,4.0,304.0,1.3157894736842104,,,
+Russia,Turkey,Residence,,,,4.0,304.0,1.3157894736842104
+Russia,Ukraine,Nationality,14.0,304.0,4.605263157894736,,,
+Russia,Ukraine,Residence,,,,9.0,304.0,2.9605263157894735
+Russia,United Arab Emirates,Residence,,,,4.0,304.0,1.3157894736842104
+Russia,United Kingdom,Nationality,53.0,304.0,17.434210526315788,,,
+Russia,United Kingdom,Residence,,,,37.0,304.0,12.171052631578947
+Russia,United States,Nationality,95.0,304.0,31.25,,,
+Russia,United States,Residence,,,,97.0,304.0,31.907894736842106
+Senegal,Gambia,Nationality,2.0,2.0,100.0,,,
+Senegal,Gambia,Residence,,,,2.0,2.0,100.0
+Serbia,Bosnia and Herzegovina,Nationality,1.0,1.0,100.0,,,
+Serbia,Bosnia and Herzegovina,Residence,,,,1.0,1.0,100.0
+Seychelles,Australia,Nationality,1.0,2.0,50.0,,,
+Seychelles,Australia,Residence,,,,1.0,2.0,50.0
+Seychelles,Israel,Nationality,1.0,2.0,50.0,,,
+Seychelles,Switzerland,Residence,,,,1.0,2.0,50.0
+Sierra Leone,Gambia,Nationality,1.0,4.0,25.0,,,
+Sierra Leone,Gambia,Residence,,,,1.0,4.0,25.0
+Sierra Leone,Ghana,Residence,,,,1.0,4.0,25.0
+Sierra Leone,Swaziland,Nationality,1.0,4.0,25.0,,,
+Sierra Leone,United Kingdom,Nationality,2.0,4.0,50.0,,,
+Sierra Leone,United Kingdom,Residence,,,,2.0,4.0,50.0
+Slovenia,Nigeria,Nationality,1.0,2.0,50.0,,,
+Slovenia,Nigeria,Residence,,,,1.0,2.0,50.0
+Slovenia,United Kingdom,Nationality,1.0,2.0,50.0,,,
+Slovenia,United States,Residence,,,,1.0,2.0,50.0
+South Africa,Australia,Nationality,3.0,20.0,15.0,,,
+South Africa,Australia,Residence,,,,3.0,20.0,15.0
+South Africa,Bosnia and Herzegovina,Nationality,2.0,20.0,10.0,,,
+South Africa,Bosnia and Herzegovina,Residence,,,,2.0,20.0,10.0
+South Africa,Germany,Residence,,,,1.0,20.0,5.0
+South Africa,Ghana,Residence,,,,2.0,20.0,10.0
+South Africa,Nigeria,Nationality,4.0,20.0,20.0,,,
+South Africa,Nigeria,Residence,,,,3.0,20.0,15.0
+South Africa,Swaziland,Nationality,2.0,20.0,10.0,,,
+South Africa,United Arab Emirates,Residence,,,,1.0,20.0,5.0
+South Africa,United Kingdom,Nationality,5.0,20.0,25.0,,,
+South Africa,United Kingdom,Residence,,,,2.0,20.0,10.0
+South Africa,United States,Nationality,4.0,20.0,20.0,,,
+South Africa,United States,Residence,,,,6.0,20.0,30.0
+Spain,Bulgaria,Nationality,1.0,2.0,50.0,,,
+Spain,Bulgaria,Residence,,,,1.0,2.0,50.0
+Spain,Canada,Nationality,1.0,2.0,50.0,,,
+Spain,Switzerland,Residence,,,,1.0,2.0,50.0
+Sweden,Benin,Nationality,1.0,1.0,100.0,,,
+Sweden,Prefer not to say,Residence,,,,1.0,1.0,100.0
+Switzerland,Bosnia and Herzegovina,Nationality,1.0,4.0,25.0,,,
+Switzerland,Bosnia and Herzegovina,Residence,,,,1.0,4.0,25.0
+Switzerland,China,Residence,,,,1.0,4.0,25.0
+Switzerland,Nigeria,Nationality,1.0,4.0,25.0,,,
+Switzerland,Nigeria,Residence,,,,1.0,4.0,25.0
+Switzerland,Prefer not to say,Nationality,1.0,4.0,25.0,,,
+Switzerland,United Kingdom,Nationality,1.0,4.0,25.0,,,
+Switzerland,United Kingdom,Residence,,,,1.0,4.0,25.0
+Syria,United States,Nationality,1.0,1.0,100.0,,,
+Syria,United States,Residence,,,,1.0,1.0,100.0
+Thailand,Australia,Nationality,2.0,7.0,28.57142857142857,,,
+Thailand,China,Residence,,,,1.0,7.0,14.285714285714285
+Thailand,Prefer not to say,Nationality,1.0,7.0,14.285714285714285,,,
+Thailand,Singapore,Residence,,,,2.0,7.0,28.57142857142857
+Thailand,United Kingdom,Nationality,3.0,7.0,42.857142857142854,,,
+Thailand,United Kingdom,Residence,,,,2.0,7.0,28.57142857142857
+Thailand,United States,Nationality,1.0,7.0,14.285714285714285,,,
+Thailand,United States,Residence,,,,2.0,7.0,28.57142857142857
+Togo,Ghana,Residence,,,,1.0,1.0,100.0
+Togo,Swaziland,Nationality,1.0,1.0,100.0,,,
+Tunisia,Israel,Nationality,1.0,2.0,50.0,,,
+Tunisia,Israel,Residence,,,,1.0,2.0,50.0
+Tunisia,United States,Nationality,1.0,2.0,50.0,,,
+Tunisia,United States,Residence,,,,1.0,2.0,50.0
+Turkey,Australia,Residence,,,,1.0,10.0,10.0
+Turkey,Benin,Nationality,1.0,10.0,10.0,,,
+Turkey,Bosnia and Herzegovina,Nationality,1.0,10.0,10.0,,,
+Turkey,Bosnia and Herzegovina,Residence,,,,1.0,10.0,10.0
+Turkey,Bulgaria,Nationality,1.0,10.0,10.0,,,
+Turkey,Bulgaria,Residence,,,,1.0,10.0,10.0
+Turkey,Canada,Nationality,1.0,10.0,10.0,,,
+Turkey,Prefer not to say,Residence,,,,1.0,10.0,10.0
+Turkey,Russia,Nationality,3.0,10.0,30.0,,,
+Turkey,Russia,Residence,,,,3.0,10.0,30.0
+Turkey,Switzerland,Residence,,,,1.0,10.0,10.0
+Turkey,Ukraine,Nationality,1.0,10.0,10.0,,,
+Turkey,Ukraine,Residence,,,,1.0,10.0,10.0
+Turkey,United States,Nationality,2.0,10.0,20.0,,,
+Turkey,United States,Residence,,,,1.0,10.0,10.0
+Uganda,Ghana,Residence,,,,1.0,1.0,100.0
+Uganda,Swaziland,Nationality,1.0,1.0,100.0,,,
+Ukraine,Australia,Nationality,18.0,202.0,8.91089108910891,,,
+Ukraine,Australia,Residence,,,,15.0,202.0,7.425742574257425
+Ukraine,Bosnia and Herzegovina,Nationality,3.0,202.0,1.4851485148514851,,,
+Ukraine,Bosnia and Herzegovina,Residence,,,,3.0,202.0,1.4851485148514851
+Ukraine,Brazil,Nationality,9.0,202.0,4.455445544554455,,,
+Ukraine,Brazil,Residence,,,,9.0,202.0,4.455445544554455
+Ukraine,Bulgaria,Nationality,2.0,202.0,0.9900990099009901,,,
+Ukraine,Bulgaria,Residence,,,,2.0,202.0,0.9900990099009901
+Ukraine,Canada,Nationality,2.0,202.0,0.9900990099009901,,,
+Ukraine,Finland,Nationality,1.0,202.0,0.49504950495049505,,,
+Ukraine,Finland,Residence,,,,1.0,202.0,0.49504950495049505
+Ukraine,Germany,Nationality,4.0,202.0,1.9801980198019802,,,
+Ukraine,Germany,Residence,,,,14.0,202.0,6.9306930693069315
+Ukraine,Ireland,Nationality,1.0,202.0,0.49504950495049505,,,
+Ukraine,Ireland,Residence,,,,1.0,202.0,0.49504950495049505
+Ukraine,Israel,Nationality,9.0,202.0,4.455445544554455,,,
+Ukraine,Israel,Residence,,,,9.0,202.0,4.455445544554455
+Ukraine,Italy,Nationality,4.0,202.0,1.9801980198019802,,,
+Ukraine,Italy,Residence,,,,4.0,202.0,1.9801980198019802
+Ukraine,Kenya,Nationality,5.0,202.0,2.4752475247524752,,,
+Ukraine,Morocco,Residence,,,,5.0,202.0,2.4752475247524752
+Ukraine,Netherlands,Nationality,7.0,202.0,3.4653465346534658,,,
+Ukraine,Netherlands,Residence,,,,3.0,202.0,1.4851485148514851
+Ukraine,Nigeria,Nationality,2.0,202.0,0.9900990099009901,,,
+Ukraine,Nigeria,Residence,,,,2.0,202.0,0.9900990099009901
+Ukraine,Poland,Nationality,8.0,202.0,3.9603960396039604,,,
+Ukraine,Poland,Residence,,,,8.0,202.0,3.9603960396039604
+Ukraine,Prefer not to say,Nationality,3.0,202.0,1.4851485148514851,,,
+Ukraine,Prefer not to say,Residence,,,,7.0,202.0,3.4653465346534658
+Ukraine,Romania,Nationality,3.0,202.0,1.4851485148514851,,,
+Ukraine,Russia,Nationality,10.0,202.0,4.9504950495049505,,,
+Ukraine,Russia,Residence,,,,6.0,202.0,2.9702970297029703
+Ukraine,Singapore,Residence,,,,3.0,202.0,1.4851485148514851
+Ukraine,Spain,Residence,,,,4.0,202.0,1.9801980198019802
+Ukraine,Sweden,Nationality,2.0,202.0,0.9900990099009901,,,
+Ukraine,Sweden,Residence,,,,2.0,202.0,0.9900990099009901
+Ukraine,Switzerland,Residence,,,,5.0,202.0,2.4752475247524752
+Ukraine,Thailand,Residence,,,,3.0,202.0,1.4851485148514851
+Ukraine,Turkey,Residence,,,,3.0,202.0,1.4851485148514851
+Ukraine,Ukraine,Nationality,13.0,202.0,6.435643564356436,,,
+Ukraine,Ukraine,Residence,,,,9.0,202.0,4.455445544554455
+Ukraine,United Kingdom,Nationality,34.0,202.0,16.831683168316832,,,
+Ukraine,United Kingdom,Residence,,,,21.0,202.0,10.396039603960396
+Ukraine,United States,Nationality,62.0,202.0,30.693069306930692,,,
+Ukraine,United States,Residence,,,,63.0,202.0,31.18811881188119
+United Arab Emirates,Canada,Nationality,1.0,10.0,10.0,,,
+United Arab Emirates,Canada,Residence,,,,1.0,10.0,10.0
+United Arab Emirates,Gambia,Nationality,1.0,10.0,10.0,,,
+United Arab Emirates,Gambia,Residence,,,,1.0,10.0,10.0
+United Arab Emirates,Nigeria,Nationality,3.0,10.0,30.0,,,
+United Arab Emirates,Nigeria,Residence,,,,2.0,10.0,20.0
+United Arab Emirates,Switzerland,Residence,,,,1.0,10.0,10.0
+United Arab Emirates,United Arab Emirates,Residence,,,,1.0,10.0,10.0
+United Arab Emirates,United Kingdom,Nationality,3.0,10.0,30.0,,,
+United Arab Emirates,United Kingdom,Residence,,,,1.0,10.0,10.0
+United Arab Emirates,United States,Nationality,2.0,10.0,20.0,,,
+United Arab Emirates,United States,Residence,,,,3.0,10.0,30.0
+United Kingdom,Australia,Nationality,2.0,57.0,3.508771929824561,,,
+United Kingdom,Australia,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,Benin,Nationality,3.0,57.0,5.263157894736842,,,
+United Kingdom,Bosnia and Herzegovina,Nationality,3.0,57.0,5.263157894736842,,,
+United Kingdom,Bosnia and Herzegovina,Residence,,,,3.0,57.0,5.263157894736842
+United Kingdom,Brazil,Nationality,2.0,57.0,3.508771929824561,,,
+United Kingdom,Brazil,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,China,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,Finland,Nationality,1.0,57.0,1.7543859649122806,,,
+United Kingdom,Finland,Residence,,,,1.0,57.0,1.7543859649122806
+United Kingdom,Gambia,Nationality,2.0,57.0,3.508771929824561,,,
+United Kingdom,Gambia,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,Ireland,Nationality,1.0,57.0,1.7543859649122806,,,
+United Kingdom,Ireland,Residence,,,,1.0,57.0,1.7543859649122806
+United Kingdom,Israel,Nationality,3.0,57.0,5.263157894736842,,,
+United Kingdom,Israel,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,Netherlands,Nationality,1.0,57.0,1.7543859649122806,,,
+United Kingdom,Nigeria,Nationality,2.0,57.0,3.508771929824561,,,
+United Kingdom,Nigeria,Residence,,,,2.0,57.0,3.508771929824561
+United Kingdom,Poland,Nationality,1.0,57.0,1.7543859649122806,,,
+United Kingdom,Poland,Residence,,,,1.0,57.0,1.7543859649122806
+United Kingdom,Prefer not to say,Nationality,3.0,57.0,5.263157894736842,,,
+United Kingdom,Prefer not to say,Residence,,,,4.0,57.0,7.017543859649122
+United Kingdom,Switzerland,Residence,,,,4.0,57.0,7.017543859649122
+United Kingdom,Turkey,Residence,,,,1.0,57.0,1.7543859649122806
+United Kingdom,United Kingdom,Nationality,25.0,57.0,43.859649122807014,,,
+United Kingdom,United Kingdom,Residence,,,,21.0,57.0,36.84210526315789
+United Kingdom,United States,Nationality,8.0,57.0,14.035087719298245,,,
+United Kingdom,United States,Residence,,,,9.0,57.0,15.789473684210526
+United States,Australia,Nationality,7.0,154.0,4.545454545454546,,,
+United States,Australia,Residence,,,,7.0,154.0,4.545454545454546
+United States,Austria,Nationality,1.0,154.0,0.6493506493506493,,,
+United States,Benin,Nationality,2.0,154.0,1.2987012987012987,,,
+United States,Bosnia and Herzegovina,Nationality,2.0,154.0,1.2987012987012987,,,
+United States,Bosnia and Herzegovina,Residence,,,,2.0,154.0,1.2987012987012987
+United States,Brazil,Nationality,5.0,154.0,3.2467532467532463,,,
+United States,Brazil,Residence,,,,5.0,154.0,3.2467532467532463
+United States,Canada,Nationality,4.0,154.0,2.5974025974025974,,,
+United States,Canada,Residence,,,,4.0,154.0,2.5974025974025974
+United States,China,Residence,,,,5.0,154.0,3.2467532467532463
+United States,Finland,Nationality,4.0,154.0,2.5974025974025974,,,
+United States,Finland,Residence,,,,4.0,154.0,2.5974025974025974
+United States,France,Residence,,,,1.0,154.0,0.6493506493506493
+United States,Gambia,Nationality,3.0,154.0,1.948051948051948,,,
+United States,Gambia,Residence,,,,3.0,154.0,1.948051948051948
+United States,Ireland,Nationality,3.0,154.0,1.948051948051948,,,
+United States,Ireland,Residence,,,,3.0,154.0,1.948051948051948
+United States,Israel,Nationality,13.0,154.0,8.441558441558442,,,
+United States,Israel,Residence,,,,10.0,154.0,6.493506493506493
+United States,Kenya,Nationality,4.0,154.0,2.5974025974025974,,,
+United States,"Korea, South",Nationality,2.0,154.0,1.2987012987012987,,,
+United States,"Korea, South",Residence,,,,2.0,154.0,1.2987012987012987
+United States,Morocco,Residence,,,,4.0,154.0,2.5974025974025974
+United States,Netherlands,Nationality,2.0,154.0,1.2987012987012987,,,
+United States,Nigeria,Nationality,9.0,154.0,5.844155844155844,,,
+United States,Nigeria,Residence,,,,8.0,154.0,5.194805194805195
+United States,Peru,Nationality,2.0,154.0,1.2987012987012987,,,
+United States,Peru,Residence,,,,2.0,154.0,1.2987012987012987
+United States,Poland,Nationality,4.0,154.0,2.5974025974025974,,,
+United States,Poland,Residence,,,,4.0,154.0,2.5974025974025974
+United States,Prefer not to say,Nationality,13.0,154.0,8.441558441558442,,,
+United States,Prefer not to say,Residence,,,,10.0,154.0,6.493506493506493
+United States,Singapore,Residence,,,,1.0,154.0,0.6493506493506493
+United States,Sweden,Nationality,1.0,154.0,0.6493506493506493,,,
+United States,Sweden,Residence,,,,1.0,154.0,0.6493506493506493
+United States,Switzerland,Residence,,,,7.0,154.0,4.545454545454546
+United States,Turkey,Residence,,,,2.0,154.0,1.2987012987012987
+United States,United Arab Emirates,Residence,,,,1.0,154.0,0.6493506493506493
+United States,United Kingdom,Nationality,36.0,154.0,23.376623376623375,,,
+United States,United Kingdom,Residence,,,,27.0,154.0,17.532467532467532
+United States,United States,Nationality,37.0,154.0,24.025974025974026,,,
+United States,United States,Residence,,,,41.0,154.0,26.623376623376622
+Venezuela,Ukraine,Nationality,1.0,3.0,33.33333333333333,,,
+Venezuela,Ukraine,Residence,,,,1.0,3.0,33.33333333333333
+Venezuela,United States,Nationality,2.0,3.0,66.66666666666666,,,
+Venezuela,United States,Residence,,,,2.0,3.0,66.66666666666666
+Vietnam,China,Residence,,,,2.0,12.0,16.666666666666664
+Vietnam,Germany,Residence,,,,1.0,12.0,8.333333333333332
+Vietnam,Nigeria,Nationality,1.0,12.0,8.333333333333332,,,
+Vietnam,Nigeria,Residence,,,,1.0,12.0,8.333333333333332
+Vietnam,Prefer not to say,Nationality,2.0,12.0,16.666666666666664,,,
+Vietnam,Switzerland,Residence,,,,1.0,12.0,8.333333333333332
+Vietnam,United Kingdom,Nationality,4.0,12.0,33.33333333333333,,,
+Vietnam,United Kingdom,Residence,,,,3.0,12.0,25.0
+Vietnam,United States,Nationality,5.0,12.0,41.66666666666667,,,
+Vietnam,United States,Residence,,,,4.0,12.0,33.33333333333333
+Zambia,United States,Nationality,2.0,2.0,100.0,,,
+Zambia,United States,Residence,,,,2.0,2.0,100.0
