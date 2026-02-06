@@ -301,13 +301,8 @@ def main():
             click_event=True,
             select_event=False,
             hover_event=False,
-            # This config is crucial for mobile taps
-            config={
-                "displayModeBar": False,
-                "scrollZoom": False,
-                "doubleClick": "reset",
-                "staticPlot": False,
-            },
+            key=f"map_events_{st.session_state['map_key']}",
+        ),
             override_height=520 if is_mobile else 600,
             key=f"map_events_{st.session_state['map_key']}",
         )
