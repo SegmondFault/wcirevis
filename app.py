@@ -303,6 +303,7 @@ def reset_selection():
 
 
 def main():
+    st.write("RUN", pd.Timestamp.utcnow().isoformat(), "mobile=", st.session_state["is_mobile"])
     st.set_page_config(layout="wide", page_title="World Cybercrime Index")
     init_state()
 
