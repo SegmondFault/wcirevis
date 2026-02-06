@@ -201,7 +201,6 @@ def get_top_attributors(
 
     key = canon(accused_country)
 
-    # Case A: columns are accused (preferred if present)
     accused_col = next((c for c in cols if canon(c) == key), None)
     out = []
 
@@ -214,9 +213,7 @@ def get_top_attributors(
             if count > 0 and denom > 0:
                 attributor = df_num.iloc[i]["Country"]
                 out.append((attributor, count / denom, count, denom))
-
     else:
-        # Case B: rows are accused (fallback)
         row_i = acc_row_lookup[mode].get(key)
         if row_i is None:
             return []
@@ -298,12 +295,13 @@ def init_state():
 
 def reset_selection():
     st.session_state["selected_country"] = None
-    st.session_state["map_key"] += 1  # force Plotly widget remount
+    st.session_state["map_key"] += 1
     st.rerun()
 
 
 def main():
-    st.write("RUN", pd.Timestamp.utcnow().isoformat(), "mobile=", st.session_state.get("is_mobile"))    st.set_page_config(layout="wide", page_title="World Cybercrime Index")
+    # Streamlit requires this to be the first Streamlit call in the script run.
+    st.set_page_config(layout="wide", page_title="World Cybercrime Index")
     init_state()
 
     df_wci, acc_num, acc_row_lookup, acc_col_totals, acc_row_totals = load_data()
@@ -338,19 +336,18 @@ def main():
     with left:
         map_fig = build_map(df_wci, metric_label, metric_to_col[metric_label], is_mobile=is_mobile)
 
-        # IMPORTANT: Plotly selection + rerun can loop/hang on mobile Safari.
+        # Mobile Safari + Plotly selection can hang. Keep it deterministic.
         if is_mobile:
+            st.info("Mobile mode: map is view-only. Use dropdown to select a country.")
             st.plotly_chart(
                 map_fig,
                 use_container_width=True,
                 key=f"map_{st.session_state['map_key']}",
             )
-            selected_points = None
 
             options = df_wci["Country"].tolist()
             prev = st.session_state.get("selected_country")
             idx = options.index(prev) if prev in options else 0
-
             st.session_state["selected_country"] = st.selectbox(
                 "Selected country",
                 options,
@@ -395,7 +392,7 @@ def main():
             bar_fig = build_bar(items, accused, accuser_mode, is_mobile=is_mobile)
             st.plotly_chart(bar_fig, use_container_width=True)
         else:
-            st.info("Click on a country in the map to see attribution details.")
+            st.info("Select a country to see attribution details.")
 
 
 if __name__ == "__main__":
