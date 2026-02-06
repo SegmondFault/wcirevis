@@ -11,12 +11,16 @@ import streamlit as st
 # Hard fail if missing (prevents silent "click does nothing" vibes)
 try:
     from streamlit_plotly_events import plotly_events
-except Exception as e:
+except Exception:
     st.error(
         "Click capture is disabled (missing streamlit-plotly-events).\n\n"
         "Add `streamlit-plotly-events` to requirements.txt, push, then Streamlit Cloud → Manage app → Reboot."
     )
     st.stop()
+
+# =========================================================
+# Styling
+# =========================================================
 
 GBR_COLORSCALE = [
     [0.00, "#e5f5e0"],
@@ -25,6 +29,10 @@ GBR_COLORSCALE = [
     [0.80, "#253494"],
     [1.00, "#d73027"],
 ]
+
+# =========================================================
+# Text cleanup + canonicalization
+# =========================================================
 
 _INVIS = ["\u200b", "\u200c", "\u200d", "\ufeff", "\u2060", "\u00a0"]
 _PUNCT_TO_SPACE = [".", ",", "'", '"', "’", "(", ")", "-", "–", "—"]
@@ -47,6 +55,10 @@ def canon(x: str) -> str:
         s = s.replace(ch, " ")
     return " ".join(s.split())
 
+
+# =========================================================
+# Data helpers
+# =========================================================
 
 def require_columns(df: pd.DataFrame, cols: List[str], name: str) -> None:
     missing = [c for c in cols if c not in df.columns]
@@ -81,6 +93,10 @@ def hover_format(metric_label: str) -> str:
     return ".4f"
 
 
+# =========================================================
+# Data model
+# =========================================================
+
 @dataclass(frozen=True)
 class AccusationStore:
     acc_num: Dict[str, pd.DataFrame]
@@ -88,6 +104,10 @@ class AccusationStore:
     col_totals: Dict[str, Dict[str, float]]
     row_totals: Dict[str, List[float]]
 
+
+# =========================================================
+# Data loading
+# =========================================================
 
 @st.cache_data
 def load_data() -> Tuple[pd.DataFrame, AccusationStore]:
@@ -124,8 +144,18 @@ def load_data() -> Tuple[pd.DataFrame, AccusationStore]:
     col_totals = {k: column_totals(df) for k, df in acc_num.items()}
     row_totals_ = {k: row_totals(df) for k, df in acc_num.items()}
 
-    return df_wci, AccusationStore(acc_num=acc_num, row_lookup=row_lookup, col_totals=col_totals, row_totals=row_totals_)
+    store = AccusationStore(
+        acc_num=acc_num,
+        row_lookup=row_lookup,
+        col_totals=col_totals,
+        row_totals=row_totals_,
+    )
+    return df_wci, store
 
+
+# =========================================================
+# Plot builders
+# =========================================================
 
 def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mobile: bool) -> go.Figure:
     vals = pd.to_numeric(df_wci[metric_col], errors="coerce").fillna(0.0).astype(float).to_numpy()
@@ -149,7 +179,7 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mo
             marker_line_color="black",
             marker_line_width=0.3,
             hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
-            showscale=not is_mobile,
+            showscale=not is_mobile,  # colorbar eats mobile width
         )
     )
 
@@ -160,7 +190,7 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mo
         bgcolor="#e6e8ff",
     )
 
-    # Important: disable drag/zoom so taps become clicks
+    # Make taps become clicks (important for iOS Safari)
     fig.update_layout(
         title="World Cybercrime Index - A collection of surveyed responses by cybercrime specialists",
         height=520 if is_mobile else 600,
@@ -174,6 +204,14 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mo
 
 
 def get_top_attributors(store: AccusationStore, accused_country: str, mode: str, top_n: int = 10):
+    """
+    Orientation-aware:
+
+    - If `accused_country` exists as a column (rows=attributors, cols=accused),
+      then read that column and normalize by attributor row totals.
+
+    - Else fallback to rows=accused, cols=attributors normalized by attributor column totals.
+    """
     df_num = store.acc_num[mode]
     cols = [c for c in df_num.columns if c != "Country"]
     key = canon(accused_country)
@@ -249,6 +287,10 @@ def build_bar(items, accused_country: str, mode: str, *, is_mobile: bool) -> go.
     return fig
 
 
+# =========================================================
+# App
+# =========================================================
+
 def init_state():
     st.session_state.setdefault("selected_country", None)
     st.session_state.setdefault("map_key", 0)
@@ -276,6 +318,7 @@ def main():
         "Respondents (by residence)": "respondents_res",
     }
 
+    # Sidebar
     st.sidebar.title("WCI Dashboard")
     metric_label = st.sidebar.selectbox("Metric:", list(metric_to_col.keys()), index=0)
     mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
@@ -287,6 +330,7 @@ def main():
     if st.sidebar.button("Reset Selection"):
         reset_selection()
 
+    # Layout
     if is_mobile:
         left = st.container()
         right = st.container()
@@ -296,14 +340,12 @@ def main():
     with left:
         fig = build_map(df_wci, metric_label, metric_to_col[metric_label], is_mobile=is_mobile)
 
+        # Use plotly_events for reliable "click" on mobile.
         clicked = plotly_events(
             fig,
             click_event=True,
             select_event=False,
             hover_event=False,
-            key=f"map_events_{st.session_state['map_key']}",
-        )
-            override_height=520 if is_mobile else 600,
             key=f"map_events_{st.session_state['map_key']}",
         )
 
@@ -314,16 +356,17 @@ def main():
         # Update selection
         if clicked:
             payload = clicked[0]
-            # streamlit-plotly-events typically provides: curveNumber, pointNumber, location, z, text, customdata
             chosen = payload.get("customdata") or payload.get("text") or payload.get("location")
             if chosen:
-                # If we got ISO3 from payload, map to country name
-                if len(str(chosen)) == 3 and str(chosen).isupper():
-                    match = df_wci.loc[df_wci["ISO3"] == str(chosen), "Country"]
+                # If ISO3 is returned, map to Country
+                chosen_str = str(chosen)
+                if len(chosen_str) == 3 and chosen_str.isupper():
+                    match = df_wci.loc[df_wci["ISO3"] == chosen_str, "Country"]
                     if not match.empty:
-                        chosen = str(match.iloc[0])
-                st.session_state["selected_country"] = str(chosen)
+                        chosen_str = str(match.iloc[0])
+                st.session_state["selected_country"] = chosen_str
 
+        # Fallback selector if iOS Safari decides to be iOS Safari
         with st.expander("Trouble tapping? Use selector"):
             options = df_wci["Country"].astype(str).tolist()
             prev = st.session_state.get("selected_country")
