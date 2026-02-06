@@ -236,6 +236,7 @@ def reset_selection():
     st.rerun()
 
 def main():
+    st.sidebar.error("BUILD MARKER: Streamlit check")
     st.set_page_config(layout="wide", page_title="World Cybercrime Index")
     init_state()
 
