@@ -58,6 +58,10 @@ def column_totals(df_num: pd.DataFrame, exclude: str = "Country") -> dict[str, f
     cols = [c for c in df_num.columns if c != exclude]
     return {c: float(df_num[c].sum()) for c in cols}
 
+def row_totals(df_num: pd.DataFrame, exclude: str = "Country") -> list[float]:
+    cols = [c for c in df_num.columns if c != exclude]
+    return df_num[cols].sum(axis=1).astype(float).tolist()
+
 def hover_format(metric_label: str) -> str:
     if metric_label in ("WCI per capita", "WCI per GDP"):
         return ".2e"
@@ -81,7 +85,7 @@ def load_data():
     required_cols = [
         "Country", "ISO3",
         "WCI", "WCI_per_capita", "WCI_per_GDP",
-        "respondents_nat", "respondents_res"
+        "respondents_nat", "respondents_res",
     ]
     require_columns(df_wci, required_cols, "df_wci")
 
@@ -99,15 +103,22 @@ def load_data():
         k: {canon(c): i for i, c in enumerate(df["Country"].tolist())}
         for k, df in acc_raw.items()
     }
-    acc_totals = {k: column_totals(df) for k, df in acc_num.items()}
+    acc_col_totals = {k: column_totals(df) for k, df in acc_num.items()}
+    acc_row_totals = {k: row_totals(df) for k, df in acc_num.items()}
 
-    return df_wci, acc_num, acc_row_lookup, acc_totals
+    return df_wci, acc_num, acc_row_lookup, acc_col_totals, acc_row_totals
 
 # =========================================================
 # Plot builders
 # =========================================================
 
-def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Figure:
+def build_map(
+    df_wci: pd.DataFrame,
+    metric_label: str,
+    metric_col: str,
+    *,
+    is_mobile: bool,
+) -> go.Figure:
     vals = pd.to_numeric(df_wci[metric_col], errors="coerce").fillna(0.0)
     vmin, vmax = float(vals.min()), float(vals.max())
     if vmin == vmax:
@@ -116,18 +127,21 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Fi
     fmt = hover_format(metric_label)
 
     fig = go.Figure()
-    fig.add_trace(go.Choropleth(
-        locations=df_wci["ISO3"],
-        z=vals,
-        text=df_wci["Country"],
-        customdata=df_wci["Country"],
-        colorscale=GBR_COLORSCALE,
-        zmin=vmin,
-        zmax=vmax,
-        marker_line_color="black",
-        marker_line_width=0.3,
-        hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
-    ))
+    fig.add_trace(
+        go.Choropleth(
+            locations=df_wci["ISO3"],
+            z=vals,
+            text=df_wci["Country"],
+            customdata=df_wci["Country"],
+            colorscale=GBR_COLORSCALE,
+            zmin=vmin,
+            zmax=vmax,
+            marker_line_color="black",
+            marker_line_width=0.3,
+            hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
+            showscale=not is_mobile,  # colorbar eats mobile width
+        )
+    )
 
     # Disable Plotly selection dimming / restyling
     fig.update_traces(
@@ -144,47 +158,81 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Fi
     )
     fig.update_layout(
         title="World Cybercrime Index - A collection of surveyed responses by cybercrime specialists",
-        height=600,
-        margin=dict(t=50, b=10, l=10, r=10),
+        height=820 if is_mobile else 600,
+        margin=dict(t=40, b=0, l=0, r=0) if is_mobile else dict(t=50, b=10, l=10, r=10),
         clickmode="event+select",
     )
     return fig
 
-def get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused_country: str, mode: str, top_n: int = 10):
+def get_top_attributors(
+    acc_num,
+    acc_row_lookup,
+    acc_col_totals,
+    acc_row_totals,
+    accused_country: str,
+    mode: str,
+    top_n: int = 10,
+):
+    """
+    Orientation-aware:
+
+    - If `accused_country` exists as a column (common format: rows=attributors, cols=accused),
+      then read that column and normalize by the attributor's row total.
+
+    - Else fallback to rows=accused, cols=attributors normalization by attributor column total.
+    """
     df_num = acc_num[mode]
-    row_lookup = acc_row_lookup[mode]
-    totals = acc_totals[mode]
+    cols = [c for c in df_num.columns if c != "Country"]
 
     key = canon(accused_country)
-    i = row_lookup.get(key)
-    if i is None:
-        return []
 
-    row = df_num.iloc[i]
-    attributors = [c for c in df_num.columns if c != "Country"]
-
+    # Case A: columns are accused (preferred if present)
+    accused_col = next((c for c in cols if canon(c) == key), None)
     out = []
-    for attributor in attributors:
-        count = float(row[attributor])
-        denom = float(totals.get(attributor, 0.0))
-        if count > 0 and denom > 0:
-            out.append((attributor, count / denom, count, denom))
+
+    if accused_col is not None:
+        # rows = attributors
+        series = df_num[accused_col].astype(float).tolist()
+        row_denoms = acc_row_totals[mode]
+
+        for i, count in enumerate(series):
+            denom = float(row_denoms[i])
+            if count > 0 and denom > 0:
+                attributor = df_num.iloc[i]["Country"]
+                out.append((attributor, count / denom, count, denom))
+
+    else:
+        # Case B: rows are accused (fallback)
+        row_i = acc_row_lookup[mode].get(key)
+        if row_i is None:
+            return []
+
+        row = df_num.iloc[row_i]
+        totals = acc_col_totals[mode]
+
+        for attributor in cols:
+            count = float(row[attributor])
+            denom = float(totals.get(attributor, 0.0))
+            if count > 0 and denom > 0:
+                out.append((attributor, count / denom, count, denom))
 
     out.sort(key=lambda t: t[1], reverse=True)
     return out[:top_n]
 
-def build_bar(items, accused_country: str, mode: str) -> go.Figure:
+def build_bar(items, accused_country: str, mode: str, *, is_mobile: bool) -> go.Figure:
     fig = go.Figure()
 
     if not items:
-        fig.add_trace(go.Bar(
-            orientation="h",
-            x=[1.0],
-            y=["No data"],
-            customdata=[(0.0, 0.0)],
-            hovertemplate="No attribution data<extra></extra>",
-            marker=dict(color="#cccccc"),
-        ))
+        fig.add_trace(
+            go.Bar(
+                orientation="h",
+                x=[1.0],
+                y=["No data"],
+                customdata=[(0.0, 0.0)],
+                hovertemplate="No attribution data<extra></extra>",
+                marker=dict(color="#cccccc"),
+            )
+        )
         title = f"Who attributes {accused_country}? ({mode})"
     else:
         names = [t[0] for t in items][::-1]
@@ -192,30 +240,32 @@ def build_bar(items, accused_country: str, mode: str) -> go.Figure:
         counts = [t[2] for t in items][::-1]
         denoms = [t[3] for t in items][::-1]
 
-        fig.add_trace(go.Bar(
-            orientation="h",
-            x=shares,
-            y=names,
-            customdata=list(zip(counts, denoms)),
-            marker=dict(
-                color=shares,
-                colorscale=GBR_COLORSCALE,
-                reversescale=False,
-                colorbar=dict(title="%", tickformat=".0f"),
-            ),
-            hovertemplate=(
-                "%{y}<br>"
-                "Share: %{x:.2f}%<br>"
-                "Count: %{customdata[0]:.0f} of %{customdata[1]:.0f} attributor attributions"
-                "<extra></extra>"
-            ),
-        ))
+        fig.add_trace(
+            go.Bar(
+                orientation="h",
+                x=shares,
+                y=names,
+                customdata=list(zip(counts, denoms)),
+                marker=dict(
+                    color=shares,
+                    colorscale=GBR_COLORSCALE,
+                    reversescale=False,
+                    colorbar=dict(title="%", tickformat=".0f") if not is_mobile else None,
+                ),
+                hovertemplate=(
+                    "%{y}<br>"
+                    "Share: %{x:.2f}%<br>"
+                    "Count: %{customdata[0]:.0f} of %{customdata[1]:.0f} attributor attributions"
+                    "<extra></extra>"
+                ),
+            )
+        )
         title = f"Who attributes {accused_country}? ({mode})"
 
     fig.update_layout(
         title=title,
-        height=420,
-        margin=dict(l=140, r=20, t=60, b=50),
+        height=520 if is_mobile else 420,
+        margin=dict(l=60, r=10, t=60, b=40) if is_mobile else dict(l=140, r=20, t=60, b=50),
         xaxis_title="Share of attributor's total attributions (%)",
     )
     return fig
@@ -225,10 +275,9 @@ def build_bar(items, accused_country: str, mode: str) -> go.Figure:
 # =========================================================
 
 def init_state():
-    if "selected_country" not in st.session_state:
-        st.session_state["selected_country"] = None
-    if "map_key" not in st.session_state:
-        st.session_state["map_key"] = 0
+    st.session_state.setdefault("selected_country", None)
+    st.session_state.setdefault("map_key", 0)
+    st.session_state.setdefault("is_mobile", False)
 
 def reset_selection():
     st.session_state["selected_country"] = None
@@ -239,7 +288,7 @@ def main():
     st.set_page_config(layout="wide", page_title="World Cybercrime Index")
     init_state()
 
-    df_wci, acc_num, acc_row_lookup, acc_totals = load_data()
+    df_wci, acc_num, acc_row_lookup, acc_col_totals, acc_row_totals = load_data()
 
     metric_to_col = {
         "WCI": "WCI",
@@ -251,19 +300,25 @@ def main():
 
     # Sidebar
     st.sidebar.title("WCI Dashboard")
-
     metric_label = st.sidebar.selectbox("Metric:", list(metric_to_col.keys()), index=0)
     accuser_mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
+
+    # Mobile layout toggle (manual, reliable)
+    st.session_state["is_mobile"] = st.sidebar.toggle("Mobile layout", value=st.session_state["is_mobile"])
+    is_mobile = st.session_state["is_mobile"]
 
     if st.sidebar.button("Reset Selection"):
         reset_selection()
 
-    # Main layout
-    col1, col2 = st.columns([2, 1])
+    # Layout: stack on mobile, columns on desktop
+    if is_mobile:
+        left = st.container()
+        right = st.container()
+    else:
+        left, right = st.columns([2, 1])
 
-    with col1:
-        map_fig = build_map(df_wci, metric_label, metric_to_col[metric_label])
-
+    with left:
+        map_fig = build_map(df_wci, metric_label, metric_to_col[metric_label], is_mobile=is_mobile)
         selected_points = st.plotly_chart(
             map_fig,
             use_container_width=True,
@@ -271,7 +326,6 @@ def main():
             key=f"map_{st.session_state['map_key']}",
         )
 
-        # selected_points is a Plotly selection event payload (or None)
         if (
             selected_points
             and "selection" in selected_points
@@ -280,7 +334,7 @@ def main():
         ):
             st.session_state["selected_country"] = selected_points["selection"]["points"][0]["customdata"]
 
-    with col2:
+    with right:
         accused = st.session_state.get("selected_country")
         if accused:
             st.subheader(f"=== {accused} ===")
@@ -297,8 +351,10 @@ def main():
             else:
                 st.write(f"**{metric_label}:** {val:.4f}")
 
-            items = get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused, accuser_mode)
-            bar_fig = build_bar(items, accused, accuser_mode)
+            items = get_top_attributors(
+                acc_num, acc_row_lookup, acc_col_totals, acc_row_totals, accused, accuser_mode
+            )
+            bar_fig = build_bar(items, accused, accuser_mode, is_mobile=is_mobile)
             st.plotly_chart(bar_fig, use_container_width=True)
         else:
             st.info("Click on a country in the map to see attribution details.")
