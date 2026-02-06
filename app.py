@@ -1,22 +1,6 @@
-from __future__ import annotations
-
-from dataclasses import dataclass
-from typing import Dict, List, Tuple
-
-import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
 import streamlit as st
-
-# Hard fail if missing (prevents silent "click does nothing" vibes)
-try:
-    from streamlit_plotly_events import plotly_events
-except Exception:
-    st.error(
-        "Click capture is disabled (missing streamlit-plotly-events).\n\n"
-        "Add `streamlit-plotly-events` to requirements.txt, push, then Streamlit Cloud → Manage app → Reboot."
-    )
-    st.stop()
 
 # =========================================================
 # Styling
@@ -37,7 +21,6 @@ GBR_COLORSCALE = [
 _INVIS = ["\u200b", "\u200c", "\u200d", "\ufeff", "\u2060", "\u00a0"]
 _PUNCT_TO_SPACE = [".", ",", "'", '"', "’", "(", ")", "-", "–", "—"]
 
-
 def clean_country_string(x):
     if not isinstance(x, str):
         return x
@@ -45,7 +28,6 @@ def clean_country_string(x):
     for ch in _INVIS:
         s = s.replace(ch, "")
     return s.strip()
-
 
 def canon(x: str) -> str:
     if x is None:
@@ -55,16 +37,14 @@ def canon(x: str) -> str:
         s = s.replace(ch, " ")
     return " ".join(s.split())
 
-
 # =========================================================
 # Data helpers
 # =========================================================
 
-def require_columns(df: pd.DataFrame, cols: List[str], name: str) -> None:
+def require_columns(df: pd.DataFrame, cols: list[str], name: str):
     missing = [c for c in cols if c not in df.columns]
     if missing:
         raise ValueError(f"Missing required columns in {name}: {missing}")
-
 
 def to_numeric_frame(df: pd.DataFrame, exclude: str = "Country") -> pd.DataFrame:
     out = df.copy()
@@ -74,16 +54,9 @@ def to_numeric_frame(df: pd.DataFrame, exclude: str = "Country") -> pd.DataFrame
         out[c] = pd.to_numeric(out[c], errors="coerce").fillna(0.0)
     return out
 
-
-def column_totals(df_num: pd.DataFrame, exclude: str = "Country") -> Dict[str, float]:
+def column_totals(df_num: pd.DataFrame, exclude: str = "Country") -> dict[str, float]:
     cols = [c for c in df_num.columns if c != exclude]
     return {c: float(df_num[c].sum()) for c in cols}
-
-
-def row_totals(df_num: pd.DataFrame, exclude: str = "Country") -> List[float]:
-    cols = [c for c in df_num.columns if c != exclude]
-    return df_num[cols].sum(axis=1).astype(float).tolist()
-
 
 def hover_format(metric_label: str) -> str:
     if metric_label in ("WCI per capita", "WCI per GDP"):
@@ -92,41 +65,23 @@ def hover_format(metric_label: str) -> str:
         return ".0f"
     return ".4f"
 
-
-# =========================================================
-# Data model
-# =========================================================
-
-@dataclass(frozen=True)
-class AccusationStore:
-    acc_num: Dict[str, pd.DataFrame]
-    row_lookup: Dict[str, Dict[str, int]]
-    col_totals: Dict[str, Dict[str, float]]
-    row_totals: Dict[str, List[float]]
-
-
 # =========================================================
 # Data loading
 # =========================================================
 
 @st.cache_data
-def load_data() -> Tuple[pd.DataFrame, AccusationStore]:
+def load_data():
     wci_path = "data/df_wci_with_respondents.csv"
     acc_nat_path = "data/accusations_nationality.csv"
     acc_res_path = "data/accusations_residence.csv"
 
     df_wci = pd.read_csv(wci_path)
     df_wci["Country"] = df_wci["Country"].apply(clean_country_string)
-    df_wci["ISO3"] = df_wci["ISO3"].astype(str).str.strip()
 
     required_cols = [
-        "Country",
-        "ISO3",
-        "WCI",
-        "WCI_per_capita",
-        "WCI_per_GDP",
-        "respondents_nat",
-        "respondents_res",
+        "Country", "ISO3",
+        "WCI", "WCI_per_capita", "WCI_per_GDP",
+        "respondents_nat", "respondents_res"
     ]
     require_columns(df_wci, required_cols, "df_wci")
 
@@ -140,47 +95,45 @@ def load_data() -> Tuple[pd.DataFrame, AccusationStore]:
         df.columns = [clean_country_string(c) for c in df.columns]
 
     acc_num = {k: to_numeric_frame(df) for k, df in acc_raw.items()}
-    row_lookup = {k: {canon(c): i for i, c in enumerate(df["Country"].tolist())} for k, df in acc_raw.items()}
-    col_totals = {k: column_totals(df) for k, df in acc_num.items()}
-    row_totals_ = {k: row_totals(df) for k, df in acc_num.items()}
+    acc_row_lookup = {
+        k: {canon(c): i for i, c in enumerate(df["Country"].tolist())}
+        for k, df in acc_raw.items()
+    }
+    acc_totals = {k: column_totals(df) for k, df in acc_num.items()}
 
-    store = AccusationStore(
-        acc_num=acc_num,
-        row_lookup=row_lookup,
-        col_totals=col_totals,
-        row_totals=row_totals_,
-    )
-    return df_wci, store
-
+    return df_wci, acc_num, acc_row_lookup, acc_totals
 
 # =========================================================
 # Plot builders
 # =========================================================
 
-def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mobile: bool) -> go.Figure:
-    vals = pd.to_numeric(df_wci[metric_col], errors="coerce").fillna(0.0).astype(float).to_numpy()
-    vmin, vmax = float(np.min(vals)), float(np.max(vals))
+def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Figure:
+    vals = pd.to_numeric(df_wci[metric_col], errors="coerce").fillna(0.0)
+    vmin, vmax = float(vals.min()), float(vals.max())
     if vmin == vmax:
         vmax = vmin + 1e-9
 
     fmt = hover_format(metric_label)
 
     fig = go.Figure()
-    fig.add_trace(
-        go.Choropleth(
-            locationmode="ISO-3",
-            locations=df_wci["ISO3"].tolist(),
-            z=vals.tolist(),
-            text=df_wci["Country"].tolist(),
-            customdata=df_wci["Country"].tolist(),
-            colorscale=GBR_COLORSCALE,
-            zmin=vmin,
-            zmax=vmax,
-            marker_line_color="black",
-            marker_line_width=0.3,
-            hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
-            showscale=not is_mobile,  # colorbar eats mobile width
-        )
+    fig.add_trace(go.Choropleth(
+        locations=df_wci["ISO3"],
+        z=vals,
+        text=df_wci["Country"],
+        customdata=df_wci["Country"],
+        colorscale=GBR_COLORSCALE,
+        zmin=vmin,
+        zmax=vmax,
+        marker_line_color="black",
+        marker_line_width=0.3,
+        hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
+    ))
+
+    # Disable Plotly selection dimming / restyling
+    fig.update_traces(
+        selected=dict(marker=dict(opacity=1.0)),
+        unselected=dict(marker=dict(opacity=1.0)),
+        selector=dict(type="choropleth"),
     )
 
     fig.update_geos(
@@ -189,66 +142,49 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mo
         projection_type="natural earth",
         bgcolor="#e6e8ff",
     )
-
-    # Make taps become clicks (important for iOS Safari)
     fig.update_layout(
         title="World Cybercrime Index - A collection of surveyed responses by cybercrime specialists",
-        height=520 if is_mobile else 600,
-        margin=dict(t=40, b=0, l=0, r=0) if is_mobile else dict(t=50, b=10, l=10, r=10),
-        clickmode="event",
-        dragmode=False,
-        uirevision="keep",
+        height=600,
+        margin=dict(t=50, b=10, l=10, r=10),
+        clickmode="event+select",
     )
-
     return fig
 
+def get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused_country: str, mode: str, top_n: int = 10):
+    df_num = acc_num[mode]
+    row_lookup = acc_row_lookup[mode]
+    totals = acc_totals[mode]
 
-def get_top_attributors(store: AccusationStore, accused_country: str, mode: str, top_n: int = 10):
-    """
-    Orientation-aware:
-
-    - If `accused_country` exists as a column (rows=attributors, cols=accused),
-      then read that column and normalize by attributor row totals.
-
-    - Else fallback to rows=accused, cols=attributors normalized by attributor column totals.
-    """
-    df_num = store.acc_num[mode]
-    cols = [c for c in df_num.columns if c != "Country"]
     key = canon(accused_country)
+    i = row_lookup.get(key)
+    if i is None:
+        return []
 
-    accused_col = next((c for c in cols if canon(c) == key), None)
+    row = df_num.iloc[i]
+    attributors = [c for c in df_num.columns if c != "Country"]
+
     out = []
-
-    if accused_col is not None:
-        series = df_num[accused_col].astype(float).tolist()
-        denoms = store.row_totals[mode]
-        for i, count in enumerate(series):
-            denom = float(denoms[i])
-            if count > 0 and denom > 0:
-                attributor = str(df_num.iloc[i]["Country"])
-                out.append((attributor, count / denom, count, denom))
-    else:
-        row_i = store.row_lookup[mode].get(key)
-        if row_i is None:
-            return []
-
-        row = df_num.iloc[row_i]
-        totals = store.col_totals[mode]
-        for attributor in cols:
-            count = float(row[attributor])
-            denom = float(totals.get(attributor, 0.0))
-            if count > 0 and denom > 0:
-                out.append((attributor, count / denom, count, denom))
+    for attributor in attributors:
+        count = float(row[attributor])
+        denom = float(totals.get(attributor, 0.0))
+        if count > 0 and denom > 0:
+            out.append((attributor, count / denom, count, denom))
 
     out.sort(key=lambda t: t[1], reverse=True)
     return out[:top_n]
 
-
-def build_bar(items, accused_country: str, mode: str, *, is_mobile: bool) -> go.Figure:
+def build_bar(items, accused_country: str, mode: str) -> go.Figure:
     fig = go.Figure()
 
     if not items:
-        fig.add_trace(go.Bar(orientation="h", x=[1.0], y=["No data"], marker=dict(color="#cccccc")))
+        fig.add_trace(go.Bar(
+            orientation="h",
+            x=[1.0],
+            y=["No data"],
+            customdata=[(0.0, 0.0)],
+            hovertemplate="No attribution data<extra></extra>",
+            marker=dict(color="#cccccc"),
+        ))
         title = f"Who attributes {accused_country}? ({mode})"
     else:
         names = [t[0] for t in items][::-1]
@@ -256,59 +192,54 @@ def build_bar(items, accused_country: str, mode: str, *, is_mobile: bool) -> go.
         counts = [t[2] for t in items][::-1]
         denoms = [t[3] for t in items][::-1]
 
-        fig.add_trace(
-            go.Bar(
-                orientation="h",
-                x=shares,
-                y=names,
-                customdata=list(zip(counts, denoms)),
-                marker=dict(
-                    color=shares,
-                    colorscale=GBR_COLORSCALE,
-                    reversescale=False,
-                    colorbar=dict(title="%", tickformat=".0f") if not is_mobile else None,
-                ),
-                hovertemplate=(
-                    "%{y}<br>"
-                    "Share: %{x:.2f}%<br>"
-                    "Count: %{customdata[0]:.0f} of %{customdata[1]:.0f} attributor attributions"
-                    "<extra></extra>"
-                ),
-            )
-        )
+        fig.add_trace(go.Bar(
+            orientation="h",
+            x=shares,
+            y=names,
+            customdata=list(zip(counts, denoms)),
+            marker=dict(
+                color=shares,
+                colorscale=GBR_COLORSCALE,
+                reversescale=False,
+                colorbar=dict(title="%", tickformat=".0f"),
+            ),
+            hovertemplate=(
+                "%{y}<br>"
+                "Share: %{x:.2f}%<br>"
+                "Count: %{customdata[0]:.0f} of %{customdata[1]:.0f} attributor attributions"
+                "<extra></extra>"
+            ),
+        ))
         title = f"Who attributes {accused_country}? ({mode})"
 
     fig.update_layout(
         title=title,
-        height=520 if is_mobile else 420,
-        margin=dict(l=60, r=10, t=60, b=40) if is_mobile else dict(l=140, r=20, t=60, b=50),
+        height=420,
+        margin=dict(l=140, r=20, t=60, b=50),
         xaxis_title="Share of attributor's total attributions (%)",
     )
     return fig
-
 
 # =========================================================
 # App
 # =========================================================
 
 def init_state():
-    st.session_state.setdefault("selected_country", None)
-    st.session_state.setdefault("map_key", 0)
-    st.session_state.setdefault("mobile_layout", False)
-    st.session_state.setdefault("debug_clicks", False)
-
+    if "selected_country" not in st.session_state:
+        st.session_state["selected_country"] = None
+    if "map_key" not in st.session_state:
+        st.session_state["map_key"] = 0
 
 def reset_selection():
     st.session_state["selected_country"] = None
-    st.session_state["map_key"] += 1
+    st.session_state["map_key"] += 1  # force Plotly widget remount
     st.rerun()
-
 
 def main():
     st.set_page_config(layout="wide", page_title="World Cybercrime Index")
     init_state()
 
-    df_wci, store = load_data()
+    df_wci, acc_num, acc_row_lookup, acc_totals = load_data()
 
     metric_to_col = {
         "WCI": "WCI",
@@ -320,60 +251,36 @@ def main():
 
     # Sidebar
     st.sidebar.title("WCI Dashboard")
-    metric_label = st.sidebar.selectbox("Metric:", list(metric_to_col.keys()), index=0)
-    mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
-    st.session_state["mobile_layout"] = st.sidebar.toggle("Mobile layout", value=st.session_state["mobile_layout"])
-    st.session_state["debug_clicks"] = st.sidebar.toggle("Debug clicks", value=st.session_state["debug_clicks"])
 
-    is_mobile = bool(st.session_state["mobile_layout"])
+    metric_label = st.sidebar.selectbox("Metric:", list(metric_to_col.keys()), index=0)
+    accuser_mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
 
     if st.sidebar.button("Reset Selection"):
         reset_selection()
 
-    # Layout
-    if is_mobile:
-        left = st.container()
-        right = st.container()
-    else:
-        left, right = st.columns([2, 1])
+    # Main layout
+    col1, col2 = st.columns([2, 1])
 
-    with left:
-        fig = build_map(df_wci, metric_label, metric_to_col[metric_label], is_mobile=is_mobile)
+    with col1:
+        map_fig = build_map(df_wci, metric_label, metric_to_col[metric_label])
 
-        # Use plotly_events for reliable "click" on mobile.
-        clicked = plotly_events(
-            fig,
-            click_event=True,
-            select_event=False,
-            hover_event=False,
-            key=f"map_events_{st.session_state['map_key']}",
+        selected_points = st.plotly_chart(
+            map_fig,
+            use_container_width=True,
+            on_select="rerun",
+            key=f"map_{st.session_state['map_key']}",
         )
 
-        if st.session_state["debug_clicks"]:
-            with st.expander("Last click payload (debug)", expanded=True):
-                st.write(clicked)
+        # selected_points is a Plotly selection event payload (or None)
+        if (
+            selected_points
+            and "selection" in selected_points
+            and "points" in selected_points["selection"]
+            and len(selected_points["selection"]["points"]) > 0
+        ):
+            st.session_state["selected_country"] = selected_points["selection"]["points"][0]["customdata"]
 
-        # Update selection
-        if clicked:
-            payload = clicked[0]
-            chosen = payload.get("customdata") or payload.get("text") or payload.get("location")
-            if chosen:
-                # If ISO3 is returned, map to Country
-                chosen_str = str(chosen)
-                if len(chosen_str) == 3 and chosen_str.isupper():
-                    match = df_wci.loc[df_wci["ISO3"] == chosen_str, "Country"]
-                    if not match.empty:
-                        chosen_str = str(match.iloc[0])
-                st.session_state["selected_country"] = chosen_str
-
-        # Fallback selector if iOS Safari decides to be iOS Safari
-        with st.expander("Trouble tapping? Use selector"):
-            options = df_wci["Country"].astype(str).tolist()
-            prev = st.session_state.get("selected_country")
-            idx = options.index(prev) if prev in options else 0
-            st.session_state["selected_country"] = st.selectbox("Selected country", options, index=idx)
-
-    with right:
+    with col2:
         accused = st.session_state.get("selected_country")
         if accused:
             st.subheader(f"=== {accused} ===")
@@ -390,12 +297,11 @@ def main():
             else:
                 st.write(f"**{metric_label}:** {val:.4f}")
 
-            items = get_top_attributors(store, accused, mode, top_n=10)
-            bar_fig = build_bar(items, accused, mode, is_mobile=is_mobile)
-            st.plotly_chart(bar_fig, use_container_width=True, config={"displayModeBar": False})
+            items = get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused, accuser_mode)
+            bar_fig = build_bar(items, accused, accuser_mode)
+            st.plotly_chart(bar_fig, use_container_width=True)
         else:
-            st.info("Tap a country on the map to see attribution details (or open the selector).")
-
+            st.info("Click on a country in the map to see attribution details.")
 
 if __name__ == "__main__":
     main()
