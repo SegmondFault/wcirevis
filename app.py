@@ -302,7 +302,7 @@ def main():
             select_event=False,
             hover_event=False,
             key=f"map_events_{st.session_state['map_key']}",
-        ),
+        )
             override_height=520 if is_mobile else 600,
             key=f"map_events_{st.session_state['map_key']}",
         )
