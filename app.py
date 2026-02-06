@@ -1,6 +1,15 @@
+from __future__ import annotations
+
 import pandas as pd
+import numpy as np
 import plotly.graph_objs as go
 import streamlit as st
+
+try:
+    from streamlit_plotly_events import plotly_events
+except Exception:
+    plotly_events = None  # fallback if dependency missing
+
 
 # =========================================================
 # Styling
@@ -14,12 +23,13 @@ GBR_COLORSCALE = [
     [1.00, "#d73027"],
 ]
 
+_INVIS = ["\u200b", "\u200c", "\u200d", "\ufeff", "\u2060", "\u00a0"]
+_PUNCT_TO_SPACE = [".", ",", "'", '"', "’", "(", ")", "-", "–", "—"]
+
+
 # =========================================================
 # Text cleanup + canonicalization
 # =========================================================
-
-_INVIS = ["\u200b", "\u200c", "\u200d", "\ufeff", "\u2060", "\u00a0"]
-_PUNCT_TO_SPACE = [".", ",", "'", '"', "’", "(", ")", "-", "–", "—"]
 
 def clean_country_string(x):
     if not isinstance(x, str):
@@ -29,6 +39,7 @@ def clean_country_string(x):
         s = s.replace(ch, "")
     return s.strip()
 
+
 def canon(x: str) -> str:
     if x is None:
         return ""
@@ -36,6 +47,7 @@ def canon(x: str) -> str:
     for ch in _PUNCT_TO_SPACE:
         s = s.replace(ch, " ")
     return " ".join(s.split())
+
 
 # =========================================================
 # Data helpers
@@ -46,6 +58,7 @@ def require_columns(df: pd.DataFrame, cols: list[str], name: str):
     if missing:
         raise ValueError(f"Missing required columns in {name}: {missing}")
 
+
 def to_numeric_frame(df: pd.DataFrame, exclude: str = "Country") -> pd.DataFrame:
     out = df.copy()
     for c in out.columns:
@@ -54,9 +67,11 @@ def to_numeric_frame(df: pd.DataFrame, exclude: str = "Country") -> pd.DataFrame
         out[c] = pd.to_numeric(out[c], errors="coerce").fillna(0.0)
     return out
 
+
 def column_totals(df_num: pd.DataFrame, exclude: str = "Country") -> dict[str, float]:
     cols = [c for c in df_num.columns if c != exclude]
     return {c: float(df_num[c].sum()) for c in cols}
+
 
 def hover_format(metric_label: str) -> str:
     if metric_label in ("WCI per capita", "WCI per GDP"):
@@ -64,6 +79,7 @@ def hover_format(metric_label: str) -> str:
     if metric_label.startswith("Respondents"):
         return ".0f"
     return ".4f"
+
 
 # =========================================================
 # Data loading
@@ -103,11 +119,12 @@ def load_data():
 
     return df_wci, acc_num, acc_row_lookup, acc_totals
 
+
 # =========================================================
 # Plot builders
 # =========================================================
 
-def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Figure:
+def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str, *, is_mobile: bool) -> go.Figure:
     vals = pd.to_numeric(df_wci[metric_col], errors="coerce").fillna(0.0)
     vmin, vmax = float(vals.min()), float(vals.max())
     if vmin == vmax:
@@ -115,25 +132,22 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Fi
 
     fmt = hover_format(metric_label)
 
-    fig = go.Figure()
-    fig.add_trace(go.Choropleth(
-        locations=df_wci["ISO3"],
-        z=vals,
-        text=df_wci["Country"],
-        customdata=df_wci["Country"],
-        colorscale=GBR_COLORSCALE,
-        zmin=vmin,
-        zmax=vmax,
-        marker_line_color="black",
-        marker_line_width=0.3,
-        hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
-    ))
-
-    # Disable Plotly selection dimming / restyling
-    fig.update_traces(
-        selected=dict(marker=dict(opacity=1.0)),
-        unselected=dict(marker=dict(opacity=1.0)),
-        selector=dict(type="choropleth"),
+    fig = go.Figure(
+        data=[
+            go.Choropleth(
+                locations=df_wci["ISO3"],
+                z=vals,
+                text=df_wci["Country"],
+                customdata=df_wci["Country"],  # we’ll read this on click
+                colorscale=GBR_COLORSCALE,
+                zmin=vmin,
+                zmax=vmax,
+                marker_line_color="black",
+                marker_line_width=0.3,
+                hovertemplate="<b>%{text}</b><br>" + metric_label + f": %{{z:{fmt}}}<extra></extra>",
+                showscale=not is_mobile,  # helps mobile layout
+            )
+        ]
     )
 
     fig.update_geos(
@@ -142,15 +156,30 @@ def build_map(df_wci: pd.DataFrame, metric_label: str, metric_col: str) -> go.Fi
         projection_type="natural earth",
         bgcolor="#e6e8ff",
     )
+
+    # IMPORTANT: clickmode "event" not "select"
     fig.update_layout(
         title="World Cybercrime Index - A collection of surveyed responses by cybercrime specialists",
-        height=600,
+        height=520 if is_mobile else 600,
         margin=dict(t=50, b=10, l=10, r=10),
-        clickmode="event+select",
+        clickmode="event",
     )
+
+    # don’t let Plotly do selection styling at all
+    fig.update_traces(
+        selector=dict(type="choropleth"),
+        selected=None,
+        unselected=None,
+    )
+
     return fig
 
+
 def get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused_country: str, mode: str, top_n: int = 10):
+    """
+    Your current matrices appear to be: rows = accused, columns = attributors.
+    Normalisation: count / (attributor total accusations).
+    """
     df_num = acc_num[mode]
     row_lookup = acc_row_lookup[mode]
     totals = acc_totals[mode]
@@ -173,7 +202,8 @@ def get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused_country: st
     out.sort(key=lambda t: t[1], reverse=True)
     return out[:top_n]
 
-def build_bar(items, accused_country: str, mode: str) -> go.Figure:
+
+def build_bar(items, accused_country: str, mode: str, *, is_mobile: bool) -> go.Figure:
     fig = go.Figure()
 
     if not items:
@@ -181,11 +211,9 @@ def build_bar(items, accused_country: str, mode: str) -> go.Figure:
             orientation="h",
             x=[1.0],
             y=["No data"],
-            customdata=[(0.0, 0.0)],
             hovertemplate="No attribution data<extra></extra>",
             marker=dict(color="#cccccc"),
         ))
-        title = f"Who attributes {accused_country}? ({mode})"
     else:
         names = [t[0] for t in items][::-1]
         shares = [t[1] * 100.0 for t in items][::-1]
@@ -201,7 +229,6 @@ def build_bar(items, accused_country: str, mode: str) -> go.Figure:
                 color=shares,
                 colorscale=GBR_COLORSCALE,
                 reversescale=False,
-                colorbar=dict(title="%", tickformat=".0f"),
             ),
             hovertemplate=(
                 "%{y}<br>"
@@ -210,30 +237,26 @@ def build_bar(items, accused_country: str, mode: str) -> go.Figure:
                 "<extra></extra>"
             ),
         ))
-        title = f"Who attributes {accused_country}? ({mode})"
 
     fig.update_layout(
-        title=title,
-        height=420,
-        margin=dict(l=140, r=20, t=60, b=50),
+        title=f"Who attributes {accused_country}? ({mode})",
+        height=460 if is_mobile else 420,
+        margin=dict(l=70, r=10, t=60, b=50) if is_mobile else dict(l=140, r=20, t=60, b=50),
         xaxis_title="Share of attributor's total attributions (%)",
+        showlegend=False,
     )
+
     return fig
+
 
 # =========================================================
 # App
 # =========================================================
 
 def init_state():
-    if "selected_country" not in st.session_state:
-        st.session_state["selected_country"] = None
-    if "map_key" not in st.session_state:
-        st.session_state["map_key"] = 0
+    st.session_state.setdefault("selected_country", None)
+    st.session_state.setdefault("is_mobile", False)
 
-def reset_selection():
-    st.session_state["selected_country"] = None
-    st.session_state["map_key"] += 1  # force Plotly widget remount
-    st.rerun()
 
 def main():
     st.set_page_config(layout="wide", page_title="World Cybercrime Index")
@@ -249,38 +272,68 @@ def main():
         "Respondents (by residence)": "respondents_res",
     }
 
-    # Sidebar
+    # Sidebar controls
     st.sidebar.title("WCI Dashboard")
-
     metric_label = st.sidebar.selectbox("Metric:", list(metric_to_col.keys()), index=0)
-    accuser_mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
+    mode = st.sidebar.selectbox("Attributions:", ["By nationality", "By residence"], index=0)
+
+    # Manual toggle. Mobile detection is unreliable.
+    st.session_state["is_mobile"] = st.sidebar.toggle("Mobile layout", value=st.session_state["is_mobile"])
+    is_mobile = st.session_state["is_mobile"]
 
     if st.sidebar.button("Reset Selection"):
-        reset_selection()
+        st.session_state["selected_country"] = None
+        st.rerun()
 
-    # Main layout
-    col1, col2 = st.columns([2, 1])
+    # Layout
+    if is_mobile:
+        left = st.container()
+        right = st.container()
+    else:
+        left, right = st.columns([2, 1])
 
-    with col1:
-        map_fig = build_map(df_wci, metric_label, metric_to_col[metric_label])
+    with left:
+        fig = build_map(df_wci, metric_label, metric_to_col[metric_label], is_mobile=is_mobile)
 
-        selected_points = st.plotly_chart(
-            map_fig,
-            use_container_width=True,
-            on_select="rerun",
-            key=f"map_{st.session_state['map_key']}",
-        )
+        config = {
+            "displayModeBar": False if is_mobile else True,
+            "scrollZoom": False,
+            "responsive": True,
+        }
 
-        # selected_points is a Plotly selection event payload (or None)
-        if (
-            selected_points
-            and "selection" in selected_points
-            and "points" in selected_points["selection"]
-            and len(selected_points["selection"]["points"]) > 0
-        ):
-            st.session_state["selected_country"] = selected_points["selection"]["points"][0]["customdata"]
+        if plotly_events is not None:
+            # Real click events (tap works better than selection on iOS)
+            clicked = plotly_events(
+                fig,
+                click_event=True,
+                select_event=False,
+                hover_event=False,
+                override_height=520 if is_mobile else 600,
+                override_width="100%",
+                key="map_click",
+            )
 
-    with col2:
+            if clicked:
+                # clicked[0] contains Plotly point metadata
+                # For choropleth, text is usually available; customdata sometimes present
+                point = clicked[0]
+                # Prefer customdata if present
+                country = point.get("customdata") or point.get("text")
+                if country:
+                    st.session_state["selected_country"] = clean_country_string(country)
+
+        else:
+            st.plotly_chart(fig, use_container_width=True, config=config)
+            st.warning("Click capture is disabled (missing streamlit-plotly-events).")
+
+        # Optional fallback, hidden
+        with st.expander("Trouble tapping on mobile? Use selector", expanded=False):
+            options = df_wci["Country"].tolist()
+            prev = st.session_state.get("selected_country")
+            idx = options.index(prev) if prev in options else 0
+            st.session_state["selected_country"] = st.selectbox("Select a country", options, index=idx)
+
+    with right:
         accused = st.session_state.get("selected_country")
         if accused:
             st.subheader(f"=== {accused} ===")
@@ -297,11 +350,11 @@ def main():
             else:
                 st.write(f"**{metric_label}:** {val:.4f}")
 
-            items = get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused, accuser_mode)
-            bar_fig = build_bar(items, accused, accuser_mode)
-            st.plotly_chart(bar_fig, use_container_width=True)
+            items = get_top_attributors(acc_num, acc_row_lookup, acc_totals, accused, mode)
+            st.plotly_chart(build_bar(items, accused, mode, is_mobile=is_mobile), use_container_width=True)
         else:
-            st.info("Click on a country in the map to see attribution details.")
+            st.info("Tap/click a country to see attribution details.")
+
 
 if __name__ == "__main__":
     main()
