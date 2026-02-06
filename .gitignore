@@ -1,6 +1,20 @@
 # Python
 __pycache__/
 *.pyc
+
+# Virtual env
+.venv/
+
+# PyCharm
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
 .ipynb_checkpoints/
 
 # Environments
@@ -9,7 +23,3 @@ venv/
 
 # OS junk
 .DS_Store
-
-# Large or derived data (adjust if needed)
-data/*.tmp
-data/*~ ø
