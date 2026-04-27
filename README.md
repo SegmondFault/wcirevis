@@ -8,6 +8,7 @@ This project revisualises data from the World Cybercrime Index (WCI), an academi
 
 The aim is not to replace the original WCI visualisation, but to provide another way of thinking about the data: as a spatial and relational view of cybercrime attribution.
 
+
 ## Source Material
 
 This project is based on:
@@ -18,7 +19,7 @@ The R code is sourced from the original project.
 
 The WCI is based on an expert survey of cybercrime intelligence and investigations professionals. Experts were asked to identify countries they considered significant sources of cybercrime across five categories, then rank those countries by the impact, professionalism, and technical skill of offenders.
 
-## Fair Frame
+## Fair Framing
 
 Cybercrime attribution is not neutral. It depends on who is observing, who is being targeted, what forms of activity are visible, and how criminal activity intersects with state tolerance, proxy behaviour, and geopolitical tension.
 
