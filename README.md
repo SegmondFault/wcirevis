@@ -14,9 +14,11 @@ This project is based on:
 
 Bruce, M., Lusthaus, J., Kashyap, R., Phair, N., & Varese, F. (2024). *Mapping the global geography of cybercrime with the World Cybercrime Index*. PLOS ONE, 19(4), e0297312. https://doi.org/10.1371/journal.pone.0297312
 
+The R code is sourced from the original project.
+
 The WCI is based on an expert survey of cybercrime intelligence and investigations professionals. Experts were asked to identify countries they considered significant sources of cybercrime across five categories, then rank those countries by the impact, professionalism, and technical skill of offenders.
 
-## Analytical Framing
+## Fair Frame
 
 Cybercrime attribution is not neutral. It depends on who is observing, who is being targeted, what forms of activity are visible, and how criminal activity intersects with state tolerance, proxy behaviour, and geopolitical tension.
 
@@ -45,15 +47,4 @@ Cybercrime is often discussed as if it were either purely criminal or clearly st
 
 By visualising WCI data spatially, this project asks whether patterns of cybercrime attribution can help reveal the grey zone between cybercrime and cyber conflict.
 
-## Technologies Used
 
-- R / original WCI workflow reference
-- Geospatial visualisation
-- 3D mapping
-- Data cleaning and transformation
-
-## Citation
-
-If using or extending this project, cite the original WCI paper:
-
-Bruce, M., Lusthaus, J., Kashyap, R., Phair, N., & Varese, F. (2024). *Mapping the global geography of cybercrime with the World Cybercrime Index*. PLOS ONE, 19(4), e0297312. https://doi.org/10.1371/journal.pone.0297312
