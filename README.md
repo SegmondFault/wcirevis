@@ -2,6 +2,10 @@
 
 A 3D geospatial revisualisation of the World Cybercrime Index, exploring how cybercrime attribution varies across national, geopolitical, and conflict-adjacent contexts.
 
+## Visual Preview
+
+![WCI Dashboard showing Romania attribution view](docs/screenshots/wci-revis.jpg)
+
 ## Overview
 
 This project revisualises data from the World Cybercrime Index (WCI), an academic attempt to map the global geography of cybercrime-producing countries. Rather than treating the WCI only as a ranking of cybercrime source countries, this project uses a 3D geospatial presentation to explore how attribution patterns vary between countries and how those patterns may reflect hostility, suspicion, exposure, and geopolitical competition.
