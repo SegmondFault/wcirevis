@@ -19,7 +19,7 @@ The R code is sourced from the original project.
 
 The WCI is based on an expert survey of cybercrime intelligence and investigations professionals. Experts were asked to identify countries they considered significant sources of cybercrime across five categories, then rank those countries by the impact, professionalism, and technical skill of offenders.
 
-## Fair Framing
+## Framing
 
 Cybercrime attribution is not neutral. It depends on who is observing, who is being targeted, what forms of activity are visible, and how criminal activity intersects with state tolerance, proxy behaviour, and geopolitical tension.
 
@@ -31,6 +31,7 @@ The project uses the term **cybercrime–cyber conflict continuum** to describe 
 
 - Revisualises WCI data in a 3D geospatial format.
 - Explores attribution patterns rather than simple country ranking alone.
+- Normalises for respondent ratios, GDP, etc - contextualising the information
 - Highlights how cybercrime-related perceptions may cluster around geopolitical relationships.
 - Provides a visual way to think about the overlap between cybercrime and cyber conflict.
 
